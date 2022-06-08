@@ -26,6 +26,19 @@ Router.get('/:id', async (req, res) => {
   }
 });
 
+
+// ! Edit Route
+Router.get('/edit/:id', async (req, res) => {
+  try {
+    const product = await Product.findById({ _id: req.params.id });
+    console.log(product);
+    res.render('products/edit', { product });
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+
 // ! Delete Route
 Router.delete('/:id', async (req, res) => {
   try {
