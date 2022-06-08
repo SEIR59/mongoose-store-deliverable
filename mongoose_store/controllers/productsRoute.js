@@ -15,6 +15,11 @@ Router.get('/', async (req, res) => {
   }
 });
 
+// ! New Route
+Router.get('/new', async (req, res) => {
+  res.render('products/new');
+});
+
 // ! Show Route
 Router.get('/:id', async (req, res) => {
   try {
@@ -25,6 +30,8 @@ Router.get('/:id', async (req, res) => {
     res.send(error);
   }
 });
+
+
 
 // ! Edit Route
 Router.get('/edit/:id', async (req, res) => {
@@ -51,7 +58,7 @@ Router.put('/:id', async (req, res) => {
         img,
       }
     );
-    res.redirect('/products')
+    res.redirect('/products');
   } catch (error) {
     res.send(error);
   }
