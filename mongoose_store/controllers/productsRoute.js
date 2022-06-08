@@ -26,7 +26,6 @@ Router.get('/:id', async (req, res) => {
   }
 });
 
-
 // ! Edit Route
 Router.get('/edit/:id', async (req, res) => {
   try {
@@ -38,12 +37,31 @@ Router.get('/edit/:id', async (req, res) => {
   }
 });
 
+// ! Update Route
+Router.put('/:id', async (req, res) => {
+  const { name, description, price, qty, img } = req.body;
+  try {
+    await Product.findOneAndUpdate(
+      { _id: req.params.id },
+      {
+        name,
+        description,
+        price,
+        qty,
+        img,
+      }
+    );
+    res.redirect('/products')
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 // ! Delete Route
 Router.delete('/:id', async (req, res) => {
   try {
     await Product.deleteOne({ _id: req.params.id });
-    res.redirect('/products')
+    res.redirect('/products');
   } catch (error) {
     res.send(error);
   }
