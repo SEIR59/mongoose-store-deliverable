@@ -1,5 +1,37 @@
 {% layout "layout.liquid" %} {% block content %}
-<div>
-  <h1>Products index</h1>
+<div class="flex flex-col justify-center items-center">
+  <div
+    class="w-11/12 bg-slate-500 flex justify-center py-5 px-8 items-center m-5 rounded-3xl border-solid border-4 border-slate-600"
+  >
+    <h2
+      class="text-white text-6xl font-bold cursor-pointer hover:text-slate-800"
+    >
+      Shop Items
+    </h2>
+  </div>
+  <div
+    class="w-full flex flex-wrap gap-y-24 gap-x-10 justify-center items-center p-10 border-box"
+  >
+    {% for product in products %}
+    <div
+      class="border-solid border-2 border-slate-600 px-16 py-4 rounded-3xl cursor-pointer shadow-2xl shadow-slate-800 hover:scale-125 bg-white"
+    >
+      <h2
+        class="bg-slate-500 w-full text-center text-white text-xl mb-6 rounded-xl px-1 py-1"
+      >
+        {{ product.name }}
+      </h2>
+      <a href="/pokemon/{{ forloop.index0 }}"
+        ><img class="w-64 h-64" src="{{ product.img }}" alt=""
+      /></a>
+      <br />
+      <h2
+        class="bg-slate-500 w-full text-center text-white text-lg mb-6 rounded-xl px-1 py-1"
+      >
+        price: ${{ product.price }}
+      </h2>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 {% endblock %}
