@@ -16,14 +16,24 @@
         <img class="w-96 h-96" src="{{ product.img }}" alt="" />
         <h2 class="mb-2 text-center">{{ product.description }}</h2>
         <h2 class="text-center mb-6">Price: ${{ product.price }}</h2>
+        
+        {% if product.qty > 0 %}
         <h2 class="text-center mb-2 text-blue-400 text-2xl">
           {{ product.qty }} remaining
         </h2>
-        <a href="" class="self-center"
-          ><button class="px-4 py-1 bg-blue-500 text-white w-full mt-4">
-            BUY
-          </button></a
-        >
+        {% else %}
+        <h2 class="text-center mb-2 text-blue-400 text-2xl">
+          OUT OF STOCK
+        </h2>
+        {% endif %}
+        {% if product.qty > 0 %}
+          <form action="/products/buy/{{product._id}}?_method=PUT" method="POST">
+            <button class="px-4 py-1 bg-blue-500 text-white w-full mt-4">
+              BUY
+            </button>
+          </form>
+        {% endif %}
+          
       </div>
       <div class="flex gap-x-6 justify-center">
         <form action="/products/edit/{{product._id}}">

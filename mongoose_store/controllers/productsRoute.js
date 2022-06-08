@@ -36,7 +36,7 @@ Router.post('/', async (req, res) => {
   try {
     const product = await Product.create(req.body);
     console.log(product);
-    res.redirect('/products')
+    res.redirect('/products');
   } catch (error) {
     res.send(error);
   }
@@ -67,7 +67,24 @@ Router.put('/:id', async (req, res) => {
         img,
       }
     );
-    res.redirect('/products');
+    res.redirect(`/products/${req.params.id}`);
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// ! Buy Route
+Router.put('/buy/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findById(id);
+    const { qty } = product;
+    try {
+      await Product.findByIdAndUpdate({ _id: id }, { qty: qty - 1 });
+    } catch (error) {
+      res.send(error);
+    }
+    res.redirect(`/products/${id}`);
   } catch (error) {
     res.send(error);
   }
