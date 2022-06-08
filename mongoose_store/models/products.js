@@ -5,11 +5,20 @@ const { Schema, model } = mongoose;
 
 //? make products schema
 const productsSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    required: true,
+  },
   description: String,
   img: String,
-  price: Number,
-  qty: Number,
+  price: {
+    type: Number,
+    min: 1,
+  },
+  qty: {
+    type: Number,
+    min: 1,
+  },
 });
 
 //? make products model
