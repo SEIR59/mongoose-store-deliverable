@@ -2,7 +2,7 @@
 //*                             Import Dependencies                            */
 //* -------------------------------------------------------------------------- */
 const mongoose = require('./connection');
-const Product = require('./products');
+const Product = require('./productsModel');
 
 //* -------------------------------------------------------------------------- */
 //*                                  Seed Code                                 */

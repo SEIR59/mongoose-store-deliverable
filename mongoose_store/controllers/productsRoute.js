@@ -26,4 +26,14 @@ Router.get('/:id', async (req, res) => {
   }
 });
 
+// ! Delete Route
+Router.delete('/:id', async (req, res) => {
+  try {
+    await Product.deleteOne({ _id: req.params.id });
+    res.redirect('/products')
+  } catch (error) {
+    res.send(error);
+  }
+});
+
 module.exports = Router;
