@@ -9,7 +9,18 @@ const Router = express.Router();
 Router.get('/', async (req, res) => {
   try {
     const products = await Product.find({});
-    res.render('products/index', {products});
+    res.render('products/index', { products });
+  } catch (error) {
+    res.send(error);
+  }
+});
+
+// ! Show Route
+Router.get('/:id', async (req, res) => {
+  try {
+    const product = await Product.findById({ _id: req.params.id });
+    console.log(product);
+    res.render('products/show', { product });
   } catch (error) {
     res.send(error);
   }

@@ -1,0 +1,76 @@
+{% layout "layout.liquid" %} {% block content %}
+<div class="flex">
+  <!--! Container -->
+  <div
+    class="flex w-full justify-around bg-slate-600 m-5 p-5 container rounded-lg"
+  >
+    <div class="flex flex-col">
+      <h1
+        class="text-6xl text-white bg-slate-400 rounded-xl px-6 py-1 pb-4 mb-4 text-center"
+      >
+        {{ product.name }}
+      </h1>
+      <div
+        class="border-solid border-2 border-slate-600 p-4 rounded-3xl shadow-2xl shadow-slate-800 bg-white"
+      >
+        <img class="w-96 h-96" src="{{ product.img }}" alt="" />
+        <h2 class="mb-2 text-center">{{ product.description }}</h2>
+        <h2 class="text-center mb-6">Price: ${{ product.price }}</h2>
+        <h2 class="text-center mb-2 text-blue-400 text-2xl">
+          {{ product.qty }} remaining
+        </h2>
+        <a href=""
+          ><button class="px-4 py-1 bg-blue-500 text-white justify-self-center">
+            BUY
+          </button></a
+        >
+      </div>
+      <a href="/products">
+        <button
+          class="flex justify-center gap-x-2 items-center bg-slate-500 text-white mt-5 w-24 rounded-md h-10 hover:bg-slate-400"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke-width="2"
+            stroke="currentColor"
+            viewbox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          Back
+        </button>
+      </a>
+    </div>
+    <!-- <div>
+      <h2 class="text-6xl text-white bg-slate-400 rounded-xl px-6 py-1 pb-4">
+        Type
+      </h2>
+      <ul class="flex flex-col gap-y-4 mt-2">
+        {% for type in Pokemon.type %}
+        <li class="text-xl text-white">{{ type }}</li>
+        {% endfor %}
+      </ul>
+    </div> -->
+    <!-- <div class="flex flex-col gap-y-4">
+      <h2 class="text-6xl text-white bg-slate-400 rounded-xl px-6 py-1 pb-4">
+        Status
+      </h2>
+      <p class="text-xl text-white">HP: {{ Pokemon.stats.hp }}</p>
+      <p class="text-xl text-white">Attack: {{ Pokemon.stats.attack }}</p>
+      <p class="text-xl text-white">Defense: {{ Pokemon.stats.defense }}</p>
+      <p class="text-xl text-white">SP Attack: {{ Pokemon.stats.spattack }}</p>
+      <p class="text-xl text-white">
+        SP Defense: {{ Pokemon.stats.spdefense }}
+      </p>
+      <p class="text-xl text-white">Speed: {{ Pokemon.stats.speed }}</p>
+    </div> -->
+  </div>
+  <!--! End of Container -->
+</div>
+{% endblock %}
