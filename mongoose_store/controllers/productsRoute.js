@@ -31,7 +31,16 @@ Router.get('/:id', async (req, res) => {
   }
 });
 
-
+// ! Create Route
+Router.post('/', async (req, res) => {
+  try {
+    const product = await Product.create(req.body);
+    console.log(product);
+    res.redirect('/products')
+  } catch (error) {
+    res.send(error);
+  }
+});
 
 // ! Edit Route
 Router.get('/edit/:id', async (req, res) => {
