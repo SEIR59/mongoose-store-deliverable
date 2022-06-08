@@ -11,7 +11,7 @@ const Product = require('./products');
 const db = mongoose.connection;
 
 //! Make sure code is not run till connected
-db.on('open', () => {
+db.on('open', async () => {
   //* -------------------------------------------------------------------------- */
   //*                         Write your Seed Code Below                         */
   //* -------------------------------------------------------------------------- */
@@ -43,24 +43,20 @@ db.on('open', () => {
   ];
 
   //? Delete all Products
-  Product.deleteMany({})
-    .then(() => {
-      //? add the starter products
-      Product.create(newProducts)
-        .then((newProducts) => {
-          //? log the new products to confirm their creation
-          console.log(newProducts);
-          db.close();
-        })
-        .catch((error) => {
-          console.log(error);
-          db.close();
-        });
-    })
-    .catch((error) => {
+  try {
+    await Product.deleteMany({});
+    try {
+      const products = await Product.create(newProducts);
+      console.log(newProducts);
+      db.close();
+    } catch (error) {
       console.log(error);
       db.close();
-    });
+    }
+  } catch (error) {
+    console.log(error);
+    db.close();
+  }
 
   ///////////////////////////////////////////////
   // Write your Seed Code Above
