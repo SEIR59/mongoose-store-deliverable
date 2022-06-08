@@ -47,7 +47,7 @@ db.on('open', async () => {
     await Product.deleteMany({});
     try {
       const products = await Product.create(newProducts);
-      console.log(newProducts);
+      console.log(products);
       db.close();
     } catch (error) {
       console.log(error);
