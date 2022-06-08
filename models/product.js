@@ -1,7 +1,7 @@
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
-const mongoose = require("./connection")
+const mongoose = require("./connections")
 
 ////////////////////////////////////////////////
 // Our Models
@@ -20,7 +20,7 @@ const storeSchema = new Schema({
     price: Number,
     qty: Number
 })
-const Fruit = model("Fruit", storeSchema)
+const Store = model("Store", storeSchema)
 
 ///////////////////////////////////////////////////
 // Export Model
