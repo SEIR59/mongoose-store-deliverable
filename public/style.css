@@ -1,0 +1,19 @@
+.product-container{
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.product-background{
+    background-color: bisque;
+    width: 400px;
+    height: 500px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product{
+    text-align: center;
+}

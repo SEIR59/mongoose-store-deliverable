@@ -115,26 +115,6 @@ app.get("/store", (req, res) => {
       res.json({ error });
     });
 });
-
-//Show 
-// show route
-app.get("/store/:id", (req, res) => {
-  // get the id from params
-  const id = req.params.id;
-
-  // find the particular fruit from the database
-  Product.findById(id)
-    .then((product) => {
-      // render the template with the data from the database
-      res.render("products/show", { product });
-    })
-    .catch((error) => {
-      console.log(error);
-      res.json({ error });
-    });
-});
-
-//New
 // new route
 app.get("/store/new", (req, res) => {
   res.render("products/new");
@@ -155,6 +135,25 @@ app.post("/store", (req, res) => {
       res.json({ error });
     });
 });
+
+//Show 
+// show route
+app.get("/store/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+
+  // find the particular fruit from the database
+  Product.findById(id)
+    .then((product) => {
+      // render the template with the data from the database
+      res.render("products/show", { product });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 
 // edit route
 app.get("/store/:id/edit", (req, res) => {
