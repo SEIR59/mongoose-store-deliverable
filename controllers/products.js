@@ -78,7 +78,12 @@ router.post("/", (request, response) => {
 
 // edit route
 router.get("/:id/edit", (request, response) => {
-    response.render("products/edit")
+    Product.findById(request.params.id)
+    .then((product) => {
+        response.render("products/edit", {
+            product: product
+        })
+    })
 })
 
 // show route
