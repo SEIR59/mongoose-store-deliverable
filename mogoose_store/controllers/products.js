@@ -2,7 +2,7 @@
 // Import Dependencies
 ///////////////////////////////////////////
 const express = require("express");
-const Product = require("./models/products");
+const Product = require("../models/products");
 
 /////////////////////////////////////////
 // Create Route
