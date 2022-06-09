@@ -3,6 +3,7 @@ require("dotenv").config()
 const express = require('express')
 const methodOverride = require("method-override")
 const path = require("path")
+const ProductRouter = require("./controllers/products.js")
 
 // establishing connection to our database
 const mongoose = require("./models/connections.js")
@@ -16,6 +17,7 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
 
 // routes 
+app.use("/products", ProductRouter)
 app.get("/", (req, res) => {
     res.send("route is working")
 })
