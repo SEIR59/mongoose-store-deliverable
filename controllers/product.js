@@ -46,12 +46,36 @@ router.get('/:id/edit', (req, res) => {
     })
 })
 
+router.get('/:id/buy', (req, res) => {
+    const id = req.params.id
+    Product.findById(id)
+    .then((product) => {
+        res.render('buy', {product})
+    })
+    .catch((error) => {
+        console.log(error)
+        res.json({error})
+    })
+})
+
 // Show Page
 router.get('/:id', (req, res) => {
     const id = req.params.id
     Product.findById(id)
     .then((product) => {
         res.render('show', {product})
+    })
+    .catch((error) => {
+        console.log(error)
+        res.json({error})
+    })
+})
+
+router.put('/:id/buy', (req, res) => {
+    const id = req.params.id
+    Product.findByIdAndUpdate(id, {$inc: {'qty': -1}}, {new: true})
+    .then((product) => {
+        res.redirect('/products')
     })
     .catch((error) => {
         console.log(error)
@@ -71,6 +95,7 @@ router.put('/:id', (req, res) => {
         res.json({error})
     })
 })
+
 
 // Delete Page
 router.get('/:id', (req, res) => {

@@ -8,7 +8,10 @@
         <br>
         Price: {{product.price}}
         <br>
-        {% if product.qty > 0%} Remaining Supply: {{product.qty}}
+        {% if product.qty > 0%} 
+        Remaining Supply: {{product.qty}}
+        <br>
+        <a href="/products/{{product._id}}/buy">Add Item To Cart?</a>
         {% else %} This item is out of stock!
         {% endif %}
         <br>
@@ -17,6 +20,8 @@
             <input type="submit" value="Delete">
         </form>
         <a href="/products"><button>Back to shop</button></a>
+        <br>
+        
     </article>
 </div>
 {%endblock%}

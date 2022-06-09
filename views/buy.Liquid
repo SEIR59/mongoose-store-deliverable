@@ -1,0 +1,7 @@
+{%layout 'layout.liquid'%} {%block content%}
+
+<form action="/products/{{product._id}}/buy?_method=PUT" method="post">
+    <input type="submit" value="Buy Item">
+</form>
+
+{%endblock%}
