@@ -19,7 +19,7 @@
   <div
     class="w-full flex flex-wrap gap-y-24 gap-x-10 justify-center items-center p-10 border-box"
   >
-    {% for product in products %}
+    {% if length > 0 %} {% for product in products %}
     <div
       class="border-solid border-2 border-slate-600 px-16 py-4 rounded-3xl cursor-pointer shadow-2xl shadow-slate-800 hover:scale-125 bg-white"
     >
@@ -38,7 +38,9 @@
         price: ${{ product.price }}
       </h2>
     </div>
-    {% endfor %}
+    {% endfor %} {% else %}
+    <h1 class="text-6xl">No Products available!</h1>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
