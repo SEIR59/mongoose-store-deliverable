@@ -28,7 +28,7 @@ db.on('open', () => {
     
     Product.deleteMany({}).then((data) => {
         Product.create(startProducts).then((data) => {
-            res.json(data)
+            console.log(data)
         })
     })
 })

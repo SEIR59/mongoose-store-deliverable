@@ -6,8 +6,9 @@ const router = express.Router()
 // Index Page
 router.get('/', (req, res) => {
     Product.find({})
-    .then((product) => {
-        res.render('index', {product})
+    .then((products) => {
+        console.log(products)
+        res.render('index', {products})
     })                       
     .catch((error) => {
         console.log(error)
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
 // Create Page
 router.post('/', (req, res) => {
     Product.create(req.body)
-    .then((product) => {
+    .then((products) => {
         res.redirect('/products')
     })
     .catch((error) => {

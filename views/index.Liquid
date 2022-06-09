@@ -1,0 +1,9 @@
+{%layout 'layout.liquid'%} {%block content%}
+<div id="container">
+    {%for product in products%}
+    <a href="/products/{{product._id}}"><img src="{{product.img}}"></a>
+    {%endfor%}
+</div>
+
+
+{%endblock%}

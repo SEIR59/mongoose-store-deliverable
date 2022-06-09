@@ -9,7 +9,7 @@ app.use(methodOverride('_method'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
-app.use('/product', ProductRouter)
+app.use('/products', ProductRouter)
 
 app.get('/', (req, res) => {
     res.render('home')
