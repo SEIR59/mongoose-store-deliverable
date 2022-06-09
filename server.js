@@ -114,6 +114,24 @@ app.get("/store", (req, res) => {
     });
 });
 
+//Show 
+// show route
+app.get("/fruits/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+
+  // find the particular fruit from the database
+  Product.findById(id)
+    .then((product) => {
+      // render the template with the data from the database
+      res.render("products/show.liquid", { product });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 
 
 
