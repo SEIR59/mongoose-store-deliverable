@@ -1,15 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>Index</title>
 </head>
+
 <body>
-    {% for product in products %}
-        <div>{{product.name}}</div>
-    {% endfor %}
-    
+    <h1 class="title title-align">Mongoose Store</h1>
+    <div class="button-align">
+        <a href="/products/new"><button type="button" class="btn btn-dark">Add a Product</button></a>
+    </div>
+    <div class="container">
+        <div class="row row-cols-3">
+            {% for product in products %}
+                <div class="col product-container">
+                    <h3>{{product.name}}</h3>
+                    <img src="{{product.img}}" alt="{{product.name}} image">
+                    <h6>Price: {{product.price}}</h6>
+                    <h6>Quantity: {{product.qty}}</h6>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
 </body>
+
 </html>

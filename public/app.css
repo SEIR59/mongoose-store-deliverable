@@ -1,0 +1,15 @@
+.title-align {
+    text-align: center;
+    margin: 2%;
+}
+
+.product-container {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    text-align: center;
+}
+
+.button-align {
+    text-align: center;
+    margin-bottom: 2%;
+}

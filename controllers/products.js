@@ -74,7 +74,6 @@ router.get("/:id/edit", (request, response) => {
     response.render("products/edit")
 })
 
-
 // show route
 router.get("/:id", (request, response) => {
     response.render("products/show")
