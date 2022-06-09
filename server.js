@@ -6,25 +6,7 @@ const morgan = require("morgan"); //import morgan
 const methodOverride = require("method-override");
 const path = require("path")
 const mongoose = require('./models/connections.js')
-
-////////////////////////////////////////////////
-// Our Models
-////////////////////////////////////////////////
-// pull schema and model from mongoose
-const { Schema, model } = mongoose;
-
-// make Products schema
-const productsSchema = new Schema({
-  name: String,
-  description: String,
-  img: String,
-  price: Number,
-  qty: Number
-});
-
-// make Products model
-const Product = model("Product", productsSchema);
-
+const Product = require('./models/product.js')
 //model represents 
 
 
