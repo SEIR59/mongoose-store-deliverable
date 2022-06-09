@@ -1,8 +1,8 @@
 /////////////////////////////////////////////
 // Database Connection
 /////////////////////////////////////////////
-
-const { default: mongoose } = require("mongoose");
+require("dotenv").config(); // Load ENV Variables
+const mongoose = require("mongoose");
 
 // Setup inputs for our connect function
 const DATABASE_URL = process.env.DATABASE_URL;
