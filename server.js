@@ -6,7 +6,7 @@ const express = require("express") // import express
 const morgan = require("morgan") //import morgan
 const methodOverride = require("method-override")
 const path = require("path")
-// const UserRouter = require('./controllers/users')
+const ProductRouter = require('./controllers/products')
 
 /////////////////////////////////////////////////
 // Create our Express Application Object
@@ -24,7 +24,7 @@ app.use(express.static("public")) // serve files from public statically
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
-// app.use('/users', UserRouter) // send all "/users" routes to user router
+app.use('/products', ProductRouter) // send all "/users" routes to user router
 app.get("/", (req, res) => {
   res.send('Server is up')
 });
