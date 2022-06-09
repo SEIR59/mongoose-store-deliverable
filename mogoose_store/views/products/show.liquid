@@ -3,13 +3,17 @@
         <article>
           <h2>
             {{ p.name }} -
-                {% if p.qty <= 0 %} OUT OF STOCK {% else %} {{p.qty}} remaining {% endif %}
+                {% if p.qty <= 0 %} OUT OF STOCK {% else %} {{p.qty}} remaining 
+                  {% comment %} TODO: {% endcomment %}
+                  <br/>
+                  <a href="/products"><button>BUY IT +1</button></a>
+                {% endif %}
           </h2>
           <img src="{{p.img}}" alt="{{p.name}}">
           <h3>$Price$: {{ p.price }}</h3>
           <h3>{{p.description}}</h3>
-         
-          <a href="/products/"><button>Back to Main</button></a>
+          <a href="/products/{{ p._id }}/edit"><button>Edit</button></a>
+          <a href="/products/"><button>Back to Main Page</button></a>
         </article>
       </div>
 {% endblock %}

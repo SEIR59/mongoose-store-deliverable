@@ -70,6 +70,40 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// edit route
+router.get("/:id/edit", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // get the fruit from the database
+  ProductModel.findById(id)
+    .then((p) => {
+      // render edit page and send fruit data
+      res.render("products/edit.liquid", { p });
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+//update route
+router.put("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // update the product
+  ProductModel.findByIdAndUpdate(id, req.body, { new: true })
+    .then((p) => {
+      // redirect to main page after updating
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////

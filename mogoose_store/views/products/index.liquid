@@ -13,7 +13,12 @@
     <h3>Price: {{p.price}}</h3>
     <p>{{p.description}}</p> 
       <h3>
-        {% if p.qty <= 0 %} OUT OF STOCK {% else %} {{p.qty}} remaining {% endif %}
+        {% if p.qty <= 0 %} OUT OF STOCK 
+          {% else %} 
+          {{p.qty}} remaining 
+         
+        {% endif %}
+
       </h3>
     
   </article>
