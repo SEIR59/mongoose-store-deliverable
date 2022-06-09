@@ -1,0 +1,16 @@
+{% layout "layout.liquid" %} {% block content %}
+<div class="home-container">
+  {% for product in products %}
+  <article>
+    <a href="/products/{{ product._id }}">
+        <h2>{{product.name}}</h2>
+      <h2>
+        <img src="{{product.img}}" alt="Image of product" >
+    </h2>
+    <h3>
+    Price $ {{product.price}}
+    </h3></a>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}
