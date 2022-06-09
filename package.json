@@ -9,7 +9,6 @@
     "dev": "nodemon server.js",
     "seed": "node models/seed.js"
   },
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jrbreeden/mongoose-store-deliverable.git"
