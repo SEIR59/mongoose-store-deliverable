@@ -190,14 +190,14 @@ app.put("/store/:id", (req, res) => {
 });
 
 //buy
-app.put("store/:id/buy", (req, res) => {
+app.put("/store/:id/buy", (req, res) => {
   //get the id from params
   const id = req.params.id;
-  Product.updateOne(id,
-      { $inc: { "qty": -1 } })
+  Product.updateOne({_id: id},
+      { $inc: { qty: -1 } })
       .then((product) => {
           // redirect to main page after updating
-          res.redirect("/store/:id");
+          res.redirect(`/store/${req.params.id}`);
       })
       // send error as json
       .catch((error) => {
