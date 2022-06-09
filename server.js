@@ -1,8 +1,7 @@
 require('dotenv').config()
 const express = require('express')
-const app = require("liquid-express-views")(express(), { root: [path.resolve(__dirname, 'views/')] })
+const app = require("liquid-express-views")(express())
 const methodOverride = require('method-override')
-const path = require(path)
 const mongoose = require('./models/connection')
 const ProductRouter = require('./controllers/product')
 
@@ -13,7 +12,7 @@ app.use(express.static('public'))
 app.use('/product', ProductRouter)
 
 app.get('/', (req, res) => {
-    res.render('index.Liquid')
+    res.render('home')
 })
 
 const PORT = process.env.PORT
