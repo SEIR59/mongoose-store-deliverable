@@ -124,7 +124,7 @@ router.put("/:id", (req, res) => {
   const id = req.params.id;
   // update the products
   Product.findByIdAndUpdate(id, req.body, { new: true })
-    .then((fruit) => {
+    .then((product) => {
       // redirect to main page after updating
       res.redirect("/products");
     })
