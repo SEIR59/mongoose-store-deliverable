@@ -1,7 +1,6 @@
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
-
 const mongoose = require("./connections.js")
 
 ////////////////////////////////////////////////
@@ -22,4 +21,4 @@ const productsSchema = new Schema({
 // make Products model
 const Product = model("Product", productsSchema);
 
-model.exports = Product;
+module.exports = Product;
