@@ -13,3 +13,7 @@
     text-align: center;
     margin-bottom: 2%;
 }
+
+.image-link:hover {
+    opacity: 50%;
+}

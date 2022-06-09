@@ -21,7 +21,7 @@
             {% for product in products %}
                 <div class="col product-container">
                     <h3>{{product.name}}</h3>
-                    <img src="{{product.img}}" alt="{{product.name}} image">
+                    <a href="/products/show"><img src="{{product.img}}" alt="{{product.name}} image" class="image-link"></a>
                     <h6>Price: {{product.price}}</h6>
                     <h6>Quantity: {{product.qty}}</h6>
                 </div>
