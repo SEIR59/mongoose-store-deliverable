@@ -62,11 +62,10 @@ const Product = model('Product', productsSchema)
 
 // ROUTES
 app.get('/products', (req, res) => {
-    Product.find({})
-    .then(products => {
-        res.render('index.liquid', { products })
+    // console.log(Product)
+    Product.find({}, (err, products) => {
+        res.render('products/index.liquid', { products })
     })
-    .catch(error => console.log(error))
 })
 
 // create a seed route
