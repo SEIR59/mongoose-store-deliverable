@@ -17,8 +17,11 @@ const { Schema, model } = mongoose;
 
 // make products schema
 const productsSchema = new Schema({
-  name: String,
-  color: String,
+    name: String,
+    description: String,
+    img: String,
+    price:{type: Number, min: 1},
+    qty: {type: Number, min: 1},
 });
 
 // make fruit model

@@ -19,44 +19,37 @@ const router = express.Router();
 //SEED NEEDS TO BE NEAR THE TOP
 //any time you go to this link, it will delete all data and then add in only the data listed below
 //used to test that database is working without having to create new create page, add in data and then test
-router.get("/seed", (req, res) => {
-  // array of starter fruits
-  const startProducts = [
-    { 
-        name: "Orange", 
-        color: "orange", 
-        readyToEat: false 
-    },
-    { 
-        name: "Grape", 
-        color: "purple", 
-        readyToEat: false 
-    },
-    { 
-        name: "Banana", 
-        color: "orange", 
-        readyToEat: false 
-    },
-    { 
-        name: "Strawberry", 
-        color: "red", 
-        readyToEat: false 
-    },
-    { 
-        name: "Coconut", 
-        color: "brown", 
-        readyToEat: false 
-    },
-  ];
-  // Delete all products
-  Product.deleteMany({}).then((data) => {
-    // Seed Starter Products
-    Product.create(startProducts).then((data) => {
-      // send created fruits as response to confirm creation
-      res.json(data); //returning json data on route page
-    });
-  });
-});
+router.get('/seed', async (req, res) => {
+    const newProducts =
+      [
+        {
+          name: 'Beans',
+          description: 'A small pile of beans. Buy more beans for a big pile of beans.',
+          img: 'https://imgur.com/LEHS8h3.png',
+          price: 5,
+          qty: 99
+        }, {
+          name: 'Bones',
+          description: 'It\'s just a bag of bones.',
+          img: 'https://imgur.com/dalOqwk.png',
+          price: 25,
+          qty: 1
+        }, {
+          name: 'Bins',
+          description: 'A stack of colorful bins for your beans and bones.',
+          img: 'https://imgur.com/ptWDPO1.png',
+          price: 7000,
+          qty: 1
+        }
+      ]
+  
+    try {
+      const seedItems = await Product.create(newProducts)
+      res.send(seedItems)
+    } catch (err) {
+      res.send(err.message)
+    }
+  })
 
 // Index Route / The Async/Await Method
 
@@ -74,24 +67,37 @@ router.get("/new", (req, res) => {
   res.render("products/new");
 });
 
+//DELETE ROUTE
+router.delete("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // delete the fruit
+  Product.findByIdAndRemove(id)
+    .then((fruit) => {
+      // redirect to main page after deleting
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 // // CREATE route
-// router.post("/", (req, res) => {
-//   // check if the readyToEat property should be true or false
-//   req.body.readyToEat = req.body.readyToEat === "on" ? true : false;
-//   // add username to req.body to track related user
-//   req.body.username = req.session.username;
-//   // create the new fruit
-//   Fruit.create(req.body)
-//     .then((fruits) => {
-//       // redirect user to index page if successfully created item
-//       res.redirect("/fruits");
-//     })
-//     // send error as json
-//     .catch((error) => {
-//       console.log(error);
-//       res.json({ error });
-//     });
-// });
+router.post("/", (req, res) => {
+  // create the new product
+  Product.create(req.body)
+    .then((products) => {
+      // redirect user to index page if successfully created item
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
 
 // EDIT ROUTE
 // router.get("/:id/edit", (req, res) => {
@@ -130,22 +136,7 @@ router.get("/new", (req, res) => {
 //     });
 // });
 
-//DELETE ROUTE
-// router.delete("/:id", (req, res) => {
-//   // get the id from params
-//   const id = req.params.id;
-//   // delete the fruit
-//   Fruit.findByIdAndRemove(id)
-//     .then((fruit) => {
-//       // redirect to main page after deleting
-//       res.redirect("/fruits");
-//     })
-//     // send error as json
-//     .catch((error) => {
-//       console.log(error);
-//       res.json({ error });
-//     });
-// });
+
 
 //SHOW ROUTE SHOULD ALWAYS BE NEAR TO BOTTOM TO AVOID MESS UP WITH EARLIER PAGES
 // show route

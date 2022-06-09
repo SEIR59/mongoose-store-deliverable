@@ -1,0 +1,16 @@
+{% layout "layout.liquid" %} {% block content %}
+    <div>
+        <article>
+            <h2>
+                {{ productL.name }} -
+                
+            </h2>
+            {% comment %} <h3>{{ productL.color }}</h3> {% endcomment %}
+            <a href="/products/{{ productL._id }}/edit"><button>Edit</button></a>
+                <form action="/products/{{ productL._id }}?_method=DELETE" method="POST">
+                    <input type="submit" value="Delete" />
+                </form>
+            <a href="/products/"><button>Back to Main</button></a>
+        </article>
+    </div>
+{% endblock %}
