@@ -2,34 +2,23 @@
 <div>
   <form action="/fruits/{{product._id}}?_method=PUT" method="post">
     <fieldset>
-      <legend>Edit {{product.name}}</legend>
-      <label>
-        NAME:<input
-          type="text"
-          name="name"
-          placeholder="enter fruit name"
-          value="{{product.name}}"
-        />
-      </label>
-      <label>
-        DESCRIPTIONS:<input
-          type="text"
-          name="color"
-          placeholder="enter fruit name"
-          value="{{product.color}}"
-        />
-      </label>
-      <label>
-        READY TO EAT:<input type="checkbox" name="readyToEat" {% if
-        fruit.readyToEat == true %} checked {% endif %} />
-      </label>
-
-      name: "Beans",
-      description:
-        "A small pile of beans. Buy more beans for a big pile of beans.",
-      img: "https://imgur.com/LEHS8h3.png",
-      price: 5,
-      qty: 99,
+        <legend>Edit {{product.name}}</legend>
+        <label>
+            NAME:<input type="text" name="name" placeholder="enter product name" />
+        </label>
+        <label>
+            DESCRIPTION:<input type="text" name="description" placeholder="enter description" />
+        </label>
+        <label>
+            Image URL:<input type="text" name="img" placeholder="enter image url" />
+        </label>
+        <label>
+            Price:<input type="text" name="price" placeholder="enter price" />
+        </label>
+        <label>
+            Quantity:<input type="text" name="qty" placeholder="enter quantity" />
+        </label>
+      
 
 
     </fieldset>

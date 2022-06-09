@@ -1,22 +1,27 @@
 {% layout "layout.liquid" %} {% block content %}
     <div>
         <article>
-            <h2>
-                {{ productL.name }} -
-                
-            </h2>
-            <h3>{{ productL.name }}</h3>
-            <a href="/products/{{ productL. }}/edit"><button>Edit</button></a>
-                <form action="/products/{{ productL._id }}?_method=DELETE" method="POST">
-                    <input type="submit" value="Delete" />
-                </form>
-
-                {% comment %} name: String,
-    description: String,
-    img: String,
-    price:{type: Number, min: 1},
-    qty: {type: Number, min: 1}, {% endcomment %}
-
+           <h1> {{product.name}}</h1>
+            <label>
+                <h4> NAME:</h4>
+                    {{product.name}}
+                </label>
+                <label>
+                    <h4> DESCRIPTION: </h4>
+                     {{product.description}}
+                </label>
+                <label>
+                  <h4>  Image: </h4>
+                    <img src="{{product.img}}" >
+                </label>
+                <label>
+                   <h4> Price: </h4>
+                    ${{product.price}}
+                </label>
+                <label>
+                 <h4> Quantity: </h4>
+                    {{product.qty}}
+                </label>
             <a href="/products/"><button>Back to Main</button></a>
         </article>
     </div>

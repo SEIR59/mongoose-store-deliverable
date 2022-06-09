@@ -119,41 +119,39 @@ router.get("/:id/edit", (req, res) => {
 
 // PUT ROUTE
 //update route
-// router.put("/:id", (req, res) => {
-//   // get the id from params
-//   const id = req.params.id;
-//   // check if the readyToEat property should be true or false
-//   req.body.readyToEat = req.body.readyToEat === "on" ? true : false;
-//   // update the fruit
-//   Fruit.findByIdAndUpdate(id, req.body, { new: true })
-//     .then((fruit) => {
-//       // redirect to main page after updating
-//       res.redirect("/fruits");
-//     })
-//     // send error as json
-//     .catch((error) => {
-//       console.log(error);
-//       res.json({ error });
-//     });
-// });
+router.put("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // update the products
+  Product.findByIdAndUpdate(id, req.body, { new: true })
+    .then((fruit) => {
+      // redirect to main page after updating
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
 
 //SHOW ROUTE SHOULD ALWAYS BE NEAR TO BOTTOM TO AVOID MESS UP WITH EARLIER PAGES
 // show route
-// router.get("/:id", (req, res) => {
-//   // get the id from params
-//   const id = req.params.id;
+router.get("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
 
-//   // find the particular fruit from the database
-//   Fruit.findById(id)
-//     .then((fruit) => {
-//       // render the template with the data from the database
-//       res.render("fruits/show.liquid", { fruit });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//       res.json({ error });
-//     });
-// });
+  // find the particular fruit from the database
+  Product.findById(id)
+    .then((product) => {
+      // render the template with the data from the database
+      res.render("products/show.liquid", { product });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
 
 //////////////////////////////////////////
 // Export the Router
