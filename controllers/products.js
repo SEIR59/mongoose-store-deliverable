@@ -43,7 +43,9 @@ router.get("/seed", (req, res) => {
 
 // index route
 router.get("/", (request, response) => {
-    response.send("eyo bonk.io?")
+    response.render("products/index", {
+        products: Product.find({})
+    })
 })
 
 // export the router
