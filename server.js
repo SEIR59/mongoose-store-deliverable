@@ -61,7 +61,7 @@ app.get("/products", (req, res) => {
 // });
 
 // show route
-app.get("products/:id", (req, res) => {
+app.get("/products/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
   function buy(number) {
@@ -73,13 +73,21 @@ app.get("products/:id", (req, res) => {
       // render the template with the data from the database
       res.render("products/show.liquid", {
         product,
-        buy: buy(),
       });
     })
     .catch((error) => {
       console.log(error);
       res.json({ error });
     });
+});
+
+// post server for change qty
+app.post("/products/:id", async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  await Product.findOneAndUpdate({ id }, { $inc: { qty: -1 } });
+
+  res.redirect(`/products/${id}`);
 });
 
 //////////////////////////////////////////////
