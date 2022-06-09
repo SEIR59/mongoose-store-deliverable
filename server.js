@@ -4,13 +4,13 @@ const app = require("liquid-express-views")(express(), { root: [path.resolve(__d
 const methodOverride = require('method-override')
 const path = require(path)
 const mongoose = require('./models/connection')
-const StoreRouter = require('./controllers/product')
+const ProductRouter = require('./controllers/product')
 
 app.use(methodOverride('_method'))
 app.use(express.urlencoded({extended: true}))
 app.use(express.static('public'))
 
-app.use('/product', StoreRouter)
+app.use('/product', ProductRouter)
 
 app.get('/', (req, res) => {
     res.render('index.Liquid')
