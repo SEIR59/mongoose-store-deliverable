@@ -3,6 +3,7 @@
 ////////////////////////////////////////
 const express = require("express");
 const { start } = require("repl");
+const { deleteOne } = require("../models/product.js");
 const Product = require("../models/product.js");
 
 /////////////////////////////////////////
@@ -134,6 +135,25 @@ router.put("/:id", (req, res) => {
       res.json({ error });
     });
 });
+
+// PUT ROUTE - BUY
+//update route
+router.put("/:id/buy", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // update the products
+    Product.updateOne({_id: id}, { $inc: { qty: -1}})
+        .then((product) => {
+            //{{product.qty reduce by 1}}
+            // redirect to main page after updating
+            res.redirect(`/products/${id}`);
+        })
+        // send error as json
+        .catch((error) => {
+            console.log(error);
+            res.json({ error });
+        });
+  });
 
 //SHOW ROUTE SHOULD ALWAYS BE NEAR TO BOTTOM TO AVOID MESS UP WITH EARLIER PAGES
 // show route
