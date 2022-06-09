@@ -2,34 +2,34 @@
 // Import Dependencies
 //////////////////////////////////////
 const express = require("express");
-
+const Product = require('../models/products.js')
 /////////////////////////////////////////
 // Create Route
 /////////////////////////////////////////
 const router = express.Router();
 
+
+
 //Index Route
 router.get("/", async (req, res) => {
-    const stores = await Store.find({});
-    res.render("views/index.liquid", {  });
+    const products =  Product.find({});
+    res.render("index.liquid", { products });
   });
   
   //New Route
   router.get("/new", (req, res) => {
-    res.render("views/new.liquid");
+    res.render("new.liquid");
   });
   
   // create route
   router.post("/", (req, res) => {
     // check if the readyToEat property should be true or false
     req.body.readyToEat = req.body.readyToEat === "on" ? true : false;
-    // add username to req.body to track related user
-    req.body.username = req.session.username;
     // create the new fruit
-    Store.create(req.body)
+    PR.create(req.body)
       .then((stores) => {
         // redirect user to index page if successfully created item
-        res.redirect("/view");
+        res.redirect("/store");
       })
       // send error as json
       .catch((error) => {
@@ -43,10 +43,10 @@ router.get("/", async (req, res) => {
     // get the id from params
     const id = req.params.id;
     // get the fruit from the database
-    Store.findById(id)
+    Product.findById(id)
       .then((stores) => {
         // render edit page and send fruit data
-        res.render("views/edit.liquid", { fruit });
+        res.render("edit.liquid", { products });
       })
       // send error as json
       .catch((error) => {
@@ -60,7 +60,7 @@ router.get("/", async (req, res) => {
     const id = req.params.id;
     // delete the fruit
     Store.findByIdAndRemove(id)
-      .then((fruit) => {
+      .then((product) => {
         // redirect to main page after deleting
         res.redirect("/store");
       })
@@ -78,7 +78,7 @@ router.get("/", async (req, res) => {
     // check if the readyToEat property should be true or false
     req.body.readyToEat = req.body.readyToEat === "on" ? true : false;
     // update the fruit
-    Store.findByIdAndUpdate(id, req.body, { new: true })
+    Product.findByIdAndUpdate(id, req.body, { new: true })
       .then((store) => {
         // redirect to main page after updating
         res.redirect("/store");
@@ -96,10 +96,10 @@ router.get("/", async (req, res) => {
     const id = req.params.id;
   
     // find the particular fruit from the database
-    Store.findById(id)
+    Product.findById(id)
       .then((stores) => {
         // render the template with the data from the database
-        res.render("views/show.liquid", { store });
+        res.render("show.liquid", { products });
       })
       .catch((error) => {
         console.log(error);

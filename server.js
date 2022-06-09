@@ -25,7 +25,7 @@ app.use(express.static("public")); // serve files from public statically
 app.use('/store', storesRouter)
 
 app.get("/", (req, res) => {
-    res.render("layout.liquid")
+    res.render("index.liquid")
   })
 
 

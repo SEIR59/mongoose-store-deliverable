@@ -2,6 +2,7 @@
 // Import Dependencies
 ///////////////////////////////////////
 const mongoose = require("./connections")
+const Product = require('./products.js')
 
 
 ///////////////////////////////////////////
@@ -16,7 +17,7 @@ db.on("open", () => {
 
 })
 
-app.get('/seed', async (req, res) => {
+// app.get('/seed', async (req, res) => {
     const newProducts =
       [
         {
@@ -30,7 +31,7 @@ app.get('/seed', async (req, res) => {
           description: 'It\'s just a bag of bones.',
           img: 'https://imgur.com/dalOqwk.png',
           price: 25,
-          qty: 0
+          qty: 1
         }, {
           name: 'Bins',
           description: 'A stack of colorful bins for your beans and bones.',
@@ -40,19 +41,19 @@ app.get('/seed', async (req, res) => {
         }
       ]
   
-    try {
-      const seedItems = await Product.create(newProducts)
-      res.send(seedItems)
-    } catch (err) {
-      res.send(err.message)
-    }
-  })
+    // try {
+    //   const seedItems = await Product.create(newProducts)
+    //   res.send(seedItems)
+    // } catch (err) {
+    //   res.send(err.message)
+    // }
+//   })
 
      // Delete all products
-     Store.deleteMany({})
-     .then((deletedStore) => {
+     Product.deleteMany({})
+     .then((deleted) => {
        // add the starter product
-       Store.create(newProducts)
+       Product.create(newProducts)
          .then((newProducts) => {
            // log the new product to confirm their creation
            console.log(newProducts);

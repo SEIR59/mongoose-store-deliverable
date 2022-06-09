@@ -1,14 +1,14 @@
 {% layout "layout.liquid" %} {% block content %}
 <div>
-  <form action="/store/{{._id}}?_method=PUT" method="post">
+  <form action="/store/{{productL._id}}?_method=PUT" method="post">
     <fieldset>
-      <legend>Edit {{newProduct.name}}</legend>
+      <legend>Edit {{productL.name}}</legend>
       <label>
         NAME:<input
           type="text"
           name="name"
           placeholder="enter fruit name"
-          value="{{newProduct.name}}"
+          value="{{productL.name}}"
         />
       </label>
       <label>
@@ -16,11 +16,11 @@
           type="text"
           name="color"
           placeholder="enter fruit name"
-          value="{{newProduct.color}}"
+          value="{{productL.color}}"
         />
       </label>
     </fieldset>
-    <input type="submit" value="Edit {{newProduct.name}}" />
+    <input type="submit" value="Edit {{productL.name}}" />
   </form>
 </div>
 {% endblock %}
