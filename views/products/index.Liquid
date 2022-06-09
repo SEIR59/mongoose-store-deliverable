@@ -41,7 +41,7 @@
             {% for product in products %}
                 <div class="col product-container">
                     <h3>{{product.name}}</h3>
-                    <a href="/products/{{product.name}}"><img src="{{product.img}}" alt="{{product.name}} image" class="image-link" width="200px"></a>
+                    <a href="/products/{{product._id}}"><img src="{{product.img}}" alt="{{product.name}} image" class="image-link" width="200px"></a>
                     <h6>Price: {{product.price}}</h6>
                     <h6>Quantity: {{product.qty}}</h6>
                 </div>

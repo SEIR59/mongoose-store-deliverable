@@ -43,17 +43,15 @@
         </form>
     </div>
     <div class="align-center">
-        {% for property in product%}
-        <h3>{{property.name}}</h3>
-        <img src="{{property.img}}" alt="{{property.name}} image" width="200px">
-        <h6>{{property.description}}</h6>
-        <h6>PRICE: ${{property.price}}</h6>
-        {% if property.qty == 0 %}
+        <h3>{{product.name}}</h3>
+        <img src="{{product.img}}" alt="{{product.name}} image" width="200px">
+        <h6>{{product.description}}</h6>
+        <h6>PRICE: ${{product.price}}</h6>
+        {% if product.qty == 0 %}
             <h6 class="out-of-stock">Out of Stock</h6>
         {% else %}
-            <h6>QUANTITY: {{property.qty}}</h6>
+            <h6>QUANTITY: {{product.qty}}</h6>
         {% endif %}
-        {% endfor %}
     </div>
 </body>
 

@@ -67,13 +67,13 @@ router.put("/:id", (request, response) => {
 // create route
 router.post("/", (request, response) => {
     Product.create(request.body)
-    .then((data) => {
-        response.redirect('/products')
-    })
-    .catch((error) => {
-        console.log(error);
-        res.json({ error });
-    });
+        .then((data) => {
+            response.redirect('/products')
+        })
+        .catch((error) => {
+            console.log(error);
+            res.json({ error });
+        });
 })
 
 // edit route
@@ -83,9 +83,16 @@ router.get("/:id/edit", (request, response) => {
 
 // show route
 router.get("/:id", (request, response) => {
-    response.render("products/show", {
-        product: Product.find({name: request.params.id})
-    })
+    Product.findById(request.params.id)
+        .then((product) => {
+            response.render("products/show", {
+                product: product
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+            res.json({ error });
+        })
 })
 
 // export the router
