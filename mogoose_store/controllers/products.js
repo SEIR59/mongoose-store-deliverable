@@ -32,6 +32,26 @@ router.get("/", (req, res) => {
     });
 });
 
+// New route
+router.get("/new", (req, res) => {
+  res.render("products/new.liquid");
+});
+
+// create route
+router.post("/", (req, res) => {
+  // create the new product into database
+  ProductModel.create(req.body)
+    .then((products) => {
+      // redirect user to index page if successfully created item
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 // show route
 // not array id anymore, id is from mongodb
 router.get("/:id", (req, res) => {
