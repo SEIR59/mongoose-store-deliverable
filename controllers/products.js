@@ -57,7 +57,7 @@ router.get('/:id/edit', (req, res) => {
 // show route
 router.get('/:id', (req, res) => {
     Product.findById(req.params.id)
-    .then(product => res.render('product/show.liquid', {product}))
+    .then(product => res.render('products/show.liquid', {product}))
     .catch(error => console.log(error))
 })
 

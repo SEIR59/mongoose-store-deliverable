@@ -2,8 +2,9 @@
 <div class="container">
     {% for product in products %}
     <article>
+        <h2> {{ product.name }} </h2>
         <a href="/products/{{ product._id }}">
-            <h2> {{ product.name }} </h2>
+            <img src="{{product.img}}" alt="">
         </a>
         <h3>Quantity: {{ product.qty }}</h3>
     </article>
