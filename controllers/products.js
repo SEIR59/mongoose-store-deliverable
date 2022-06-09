@@ -68,18 +68,11 @@ router.get("/", async (req, res) => {
     res.render("products/index.liquid", { products });
   });
 
-// don't need this any more but keeping as an example of the async / await method
-// router.get("/", async (req, res) => {
-//   //async looks for any kind of awaits - async knows it has to wait for await to finsh running before it will run it's function
-//   const fruits = await Fruit.find({}); // Fruits.find({}) takes a long time to run
-//   // await has it wait a second allowing Fruits.find({}) to run before it runs allowing the data to be retrived from the database
-//   res.render("fruits/index.liquid", { fruits });
-// });
 
 //NEW ROUTE
-// router.get("/new", (req, res) => {
-//   res.render("fruits/new");
-// });
+router.get("/new", (req, res) => {
+  res.render("products/new");
+});
 
 // // CREATE route
 // router.post("/", (req, res) => {

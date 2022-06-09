@@ -6,12 +6,7 @@
        {% for product in Product %}
             <article>
                 <a href="/products/{{ product._id }}">
-                <h2>
-                    {{product.name}} - {% if product.readyToEat == true %} Ripe 
-                    {% else %} 
-                    Not Ripe 
-                    {% endif %}
-                </h2>
+               
                 </a>
             </article>
         {% endfor %} 

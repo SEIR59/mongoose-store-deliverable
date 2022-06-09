@@ -19,8 +19,6 @@ const { Schema, model } = mongoose;
 const productsSchema = new Schema({
   name: String,
   color: String,
-  readyToEat: Boolean,
-  username: String,
 });
 
 // make fruit model
