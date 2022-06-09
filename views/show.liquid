@@ -1,0 +1,16 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+  <article>
+    <h2>
+      {{ newProduct.name }} - {% if readyToEat == true %} Ready to Eat {% else %} Not
+      Ready to Eat {% endif %}
+    </h2>
+    <h3>{{ newProduct.color }}</h3>
+    <a href="/store/{{ newProduct._id }}/edit"><button>Edit</button></a>
+    <form action="/store/{{ newProduct._id }}?_method=DELETE" method="POST">
+      <input type="submit" value="Delete" />
+    </form>
+    <a href="/store/"><button>Back to Main</button></a>
+  </article>
+</div>
+{% endblock %}

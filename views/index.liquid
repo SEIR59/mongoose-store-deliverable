@@ -1,0 +1,16 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+    <a href="/store/new"><button>Create A New Fruit</button></a>
+    <a href="/sotre/logout"><button>Logout</button></a>
+  {% for p in products %}
+  <article>
+    <a href="/store/{{ newProduct._id }}">
+      <h2>
+        {{newProduct.name}} - {% if fruit.readyToEat == true %} Ripe {% else %} Not
+        Ripe {% endif %}
+      </h2>
+    </a>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

@@ -6,7 +6,7 @@ const express = require('express')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
 const path = require('path')
-const Store = require('./models/product.js')
+const storeRouter = require('./models/products.js')
 
 /////////////////////////////////////////////////
 // Create our Express Application Object Bind Liquid Templating Engine

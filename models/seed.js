@@ -1,7 +1,7 @@
 ///////////////////////////////////////
 // Import Dependencies
 ///////////////////////////////////////
-const mongoose = require("./connection")
+const mongoose = require("./connections")
 
 
 ///////////////////////////////////////////
@@ -15,8 +15,6 @@ const db = mongoose.connection;
 db.on("open", () => {
 
 })
-
-
 
 app.get('/seed', async (req, res) => {
     const newProducts =
@@ -50,14 +48,14 @@ app.get('/seed', async (req, res) => {
     }
   })
 
-     // Delete all fruits
+     // Delete all products
      Store.deleteMany({})
      .then((deletedStore) => {
-       // add the starter fruits
-       Store.create(startStore)
-         .then((newFruits) => {
-           // log the new fruits to confirm their creation
-           console.log(newStore);
+       // add the starter product
+       Store.create(newProducts)
+         .then((newProducts) => {
+           // log the new product to confirm their creation
+           console.log(newProducts);
            db.close();
          })
          .catch((error) => {

@@ -6,23 +6,19 @@ const mongoose = require("./connections")
 ////////////////////////////////////////////////
 // Our Models
 ////////////////////////////////////////////////
-// pull schema and model from mongoose
-// const Schema = mongoose.Schema
-// const model = mongoose.model
-//is equal to;
 const { Schema , model } = mongoose
 
 // Make fruits schema
-const storeSchema = new Schema({
+const productsSchema = new Schema({
     name: String,
     description: String,
     img: String,
-    price: Number,
-    qty: Number
+    price: {type: Number, min: 1},
+    qty: {type: Number, min: 1}
 })
-const Store = model("Store", storeSchema)
+const Products = model("Product", productsSchema)
 
 ///////////////////////////////////////////////////
 // Export Model
 ///////////////////////////////////////////////////
-module.exports = Store;
+module.exports = Products;
