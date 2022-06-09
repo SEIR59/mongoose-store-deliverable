@@ -56,7 +56,16 @@ router.get("/new", (request, response) => {
 
 // destroy route
 router.delete("/:id", (request, response) => {
-    response.send("deleted route")
+    Product.findByIdAndRemove(request.params.id)
+        .then((product) => {
+            // redirect to main page after deleting
+            response.redirect("/products");
+        })
+        // send error as json
+        .catch((error) => {
+            console.log(error);
+            response.json({ error });
+        });
 })
 
 // update route
