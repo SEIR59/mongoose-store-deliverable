@@ -18,11 +18,17 @@
             margin-left: 20%;
             margin-right: 20%
         }
+        .align-center {
+            text-align: center;
+        }
     </style>
 </head>
 
 <body>
     <h1 class="title title-align">Add a Product</h1>
+    <div class="align-center">
+        <a href="/products/"><button type="button" class="btn btn-dark">All Products</button></a>
+    </div>
     <form action="/products" method="POST">
         <label class="mb-3 row">
             NAME:<input type="text" name="name"/>

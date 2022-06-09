@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>Show</title>
+    <style>
+        .align-center {
+            margin: 2%;
+            text-align: center;
+        }
+
+        h6 {
+            margin: 2%;
+        }
+
+        img {
+            border: 1px solid black;
+        }
+        .out-of-stock {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="align-center">Show</h1>
+    <div class="align-center">
+        <a href="/products/"><button type="button" class="btn btn-dark">All Products</button></a>
+    </div>
+    <div class="align-center">
+        {% for property in product%}
+        <h3>{{property.name}}</h3>
+        <img src="{{property.img}}" alt="{{property.name}} image" width="200px">
+        <h6>{{property.description}}</h6>
+        <h6>PRICE: ${{property.price}}</h6>
+        {% if property.qty == 0 %}
+            <h6 class="out-of-stock">Out of Stock</h6>
+        {% else %}
+            <h6>QUANTITY: {{property.qty}}</h6>
+        {% endif %}
+        {% endfor %}
+    </div>
+</body>
+
+</html>

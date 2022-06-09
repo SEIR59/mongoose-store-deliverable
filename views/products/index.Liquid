@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <h1 class="title align-center">Mongoose Store</h1>
+    <h1 class="align-center">Mongoose Store</h1>
     <div class="align-center">
         <a href="/products/new"><button type="button" class="btn btn-dark">Add a Product</button></a>
     </div>
@@ -41,7 +41,7 @@
             {% for product in products %}
                 <div class="col product-container">
                     <h3>{{product.name}}</h3>
-                    <a href="/products/{{forloop.index0}}"><img src="{{product.img}}" alt="{{product.name}} image" class="image-link" width="200px"></a>
+                    <a href="/products/{{product.name}}"><img src="{{product.img}}" alt="{{product.name}} image" class="image-link" width="200px"></a>
                     <h6>Price: {{product.price}}</h6>
                     <h6>Quantity: {{product.qty}}</h6>
                 </div>

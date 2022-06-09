@@ -83,7 +83,9 @@ router.get("/:id/edit", (request, response) => {
 
 // show route
 router.get("/:id", (request, response) => {
-    response.render("products/show")
+    response.render("products/show", {
+        product: Product.find({name: request.params.id})
+    })
 })
 
 // export the router
