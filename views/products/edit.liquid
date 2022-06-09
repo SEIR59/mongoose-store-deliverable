@@ -12,7 +12,7 @@
         />
       </label>
       <label>
-        COLOR:<input
+        DESCRIPTIONS:<input
           type="text"
           name="color"
           placeholder="enter fruit name"
@@ -23,6 +23,15 @@
         READY TO EAT:<input type="checkbox" name="readyToEat" {% if
         fruit.readyToEat == true %} checked {% endif %} />
       </label>
+
+      name: "Beans",
+      description:
+        "A small pile of beans. Buy more beans for a big pile of beans.",
+      img: "https://imgur.com/LEHS8h3.png",
+      price: 5,
+      qty: 99,
+
+
     </fieldset>
     <input type="submit" value="Edit {{product.name}}" />
   </form>
