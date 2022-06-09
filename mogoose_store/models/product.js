@@ -1,7 +1,7 @@
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
-const mongoose = require("mongoose");
+const mongoose = require("./connection"); //mongoose from connection!
 
 ////////////////////////////////////////////////
 // Our Models
@@ -24,6 +24,6 @@ const productSchema = new Schema({
   },
 });
 
-const Product = model("Product", productSchema);
+const ProductModel = model("Product", productSchema);
 
-module.exports = Product;
+module.exports = ProductModel;

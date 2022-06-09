@@ -2,7 +2,7 @@
 // Import Dependencies
 ///////////////////////////////////////////
 const express = require("express");
-const Product = require("../models/product");
+const ProductModel = require("../models/product.js");
 
 /////////////////////////////////////////
 // Create Route
@@ -21,6 +21,18 @@ router.use((req, res, next) => {
 /////////////////////////////////////////
 // Routes
 /////////////////////////////////////////
+// Index Route
+router.get("/", (req, res) => {
+  console.log("here"); //this is logged
+  ProductModel.find({})
+    .then((products) => {
+      console.log("does it render?"); //this is not
+      res.render("products/index", { products });
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+});
 
 //////////////////////////////////////////
 // Export the Router
