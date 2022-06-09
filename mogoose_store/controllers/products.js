@@ -104,6 +104,24 @@ router.put("/:id", (req, res) => {
     });
 });
 
+// Delete
+router.delete("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // delete the fruit
+  ProductModel.findByIdAndRemove(id)
+    .then((fruit) => {
+      // redirect to main page after deleting
+      // still keep it
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////
