@@ -1,4 +1,5 @@
 // import dependencies
+const { response } = require("express")
 const express = require("express")
 const Product = require("../models/products.js")
 
@@ -46,6 +47,37 @@ router.get("/", (request, response) => {
     response.render("products/index", {
         products: Product.find({})
     })
+})
+
+// new route
+router.get("/new", (request, response) => {
+    response.render("products/new")
+})
+
+// destroy route
+router.delete("/:id", (request, response) => {
+    response.send("deleted route")
+})
+
+// update route
+router.put("/:id", (request, response) => {
+    response.send("update route")
+})
+
+// create route
+router.post("/", (request, response) => {
+    response.send("create route")
+})
+
+// edit route
+router.get("/:id/edit", (request, response) => {
+    response.render("products/edit")
+})
+
+
+// show route
+router.get("/:id", (request, response) => {
+    response.render("products/show")
 })
 
 // export the router
