@@ -2,15 +2,23 @@
 <div>
   {% comment %} <a href="/products/new"><button>Create A New Cheeeeewy</button></a> {% endcomment %}
 
-
+<div class="container">
   {% for p in products %}
   <article>
     <a href="/products/{{ p._id }}">
-      <h2>
-        {% if p.qty <= 0 %} OUT OF STOCK {% else %} {{p.qty}} remaining {% endif %}
-      </h2>
+      <h2>{{p.name}}</h2>
+      <img src="{{p.img}}" alt="{{p.name}}">
     </a>
+    
+    <h3>Price: {{p.price}}</h3>
+    <p>{{p.description}}</p> 
+      <h3>
+        {% if p.qty <= 0 %} OUT OF STOCK {% else %} {{p.qty}} remaining {% endif %}
+      </h3>
+    
   </article>
   {% endfor %}
 </div>
+</div>
 {% endblock %}
+

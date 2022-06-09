@@ -23,14 +23,30 @@ router.use((req, res, next) => {
 /////////////////////////////////////////
 // Index Route
 router.get("/", (req, res) => {
-  console.log("here"); //this is logged
   ProductModel.find({})
     .then((products) => {
-      console.log("does it render?"); //this is not
       res.render("products/index", { products });
     })
     .catch((err) => {
       console.log(err.message);
+    });
+});
+
+// show route
+// not array id anymore, id is from mongodb
+router.get("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+
+  // find the particular product from the database
+  ProductModel.findById(id)
+    .then((p) => {
+      // render the template with the data from the database
+      res.render("products/show.liquid", { p });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
     });
 });
 

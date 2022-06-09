@@ -12,7 +12,7 @@ const { Schema, model } = mongoose;
 // make product schema
 const productSchema = new Schema({
   name: String,
-  descprition: String,
+  description: String,
   img: String,
   price: {
     type: Number,
