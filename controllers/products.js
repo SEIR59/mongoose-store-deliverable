@@ -66,7 +66,14 @@ router.put("/:id", (request, response) => {
 
 // create route
 router.post("/", (request, response) => {
-    response.send("create route")
+    Product.create(request.body)
+    .then((data) => {
+        response.redirect('/products')
+    })
+    .catch((error) => {
+        console.log(error);
+        res.json({ error });
+    });
 })
 
 // edit route
