@@ -81,13 +81,27 @@ app.get("/products/:id", (req, res) => {
     });
 });
 
-// post server for change qty
+// put server for change qty
 app.put("/products/:id", async (req, res) => {
   const id = req.params.id;
 
   await Product.findByIdAndUpdate(id, { $inc: { qty: -1 } }, { new: true });
 
   res.redirect(`/products/${id}`);
+});
+
+// create route
+app.post("/products", (req, res) => {
+  Product.create(req.body)
+    .then((product) => {
+      // redirect user to index page if successfully created item
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
 });
 
 //////////////////////////////////////////////

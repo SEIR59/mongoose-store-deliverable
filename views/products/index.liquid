@@ -5,10 +5,10 @@
   {% for product in products %}
   <article>
     <div class="container">
-      <h2>
-        {{ product.name }}
-      </h2>
       <a href="/products/{{ product._id }}">
+        <h2>
+          {{ product.name }}
+        </h2>
         <img src="{{ product.img }}" alt="" />
       </a>
       <p>price: ${{ product.price }}</p>
