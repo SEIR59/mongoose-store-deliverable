@@ -1,4 +1,9 @@
 article {
+  border: 10px solid rgb(148, 122, 244);
+}
+
+.container {
   display: grid;
-  justify-content: left;
+  justify-content: center;
+  grid-template-columns: repeat(3, 400px);
 }
