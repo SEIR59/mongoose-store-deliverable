@@ -7,8 +7,21 @@
                     NAME:<input type="text" name="name" placeholder="enter product name" />
                 </label>
                 <label>
-                    COLOR:<input type="text" name="color" placeholder="enter color" />
+                    DESCRIPTION:<input type="text" name="description" placeholder="enter description" />
                 </label>
+                <label>
+                    Image URL:<input type="text" name="img" placeholder="enter image url" />
+                </label>
+                <label>
+                    Price:<input type="text" name="price" placeholder="enter price" />
+                </label>
+
+                {% comment %} name: String,
+                description: String,
+                img: String,
+                price:{type: Number, min: 1},
+                qty: {type: Number, min: 1}, {% endcomment %}
+
             </fieldset>
             <input type="submit" value="create new product" />
         </form>

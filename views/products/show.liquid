@@ -5,11 +5,18 @@
                 {{ productL.name }} -
                 
             </h2>
-            {% comment %} <h3>{{ productL.color }}</h3> {% endcomment %}
-            <a href="/products/{{ productL._id }}/edit"><button>Edit</button></a>
+            <h3>{{ productL.name }}</h3>
+            <a href="/products/{{ productL. }}/edit"><button>Edit</button></a>
                 <form action="/products/{{ productL._id }}?_method=DELETE" method="POST">
                     <input type="submit" value="Delete" />
                 </form>
+
+                {% comment %} name: String,
+    description: String,
+    img: String,
+    price:{type: Number, min: 1},
+    qty: {type: Number, min: 1}, {% endcomment %}
+
             <a href="/products/"><button>Back to Main</button></a>
         </article>
     </div>
