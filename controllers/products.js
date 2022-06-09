@@ -49,7 +49,7 @@ router.get('/seed', async (req, res) => {
     } catch (err) {
       res.send(err.message)
     }
-  })
+})
 
 // Index Route / The Async/Await Method
 

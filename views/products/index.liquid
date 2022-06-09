@@ -2,9 +2,10 @@
     <div>
         <a href="/products/new"><button>Create A New Product</button></a>
         {% comment %} <a href="/users/logout"><button>Logout</button></a> {% endcomment %}
-
-       {% for productL in Product %}
+<h1>testeroo</h1>
+       {% for productL in products %}
             <article>
+                {{productL.name}}
                 <a href="/products/{{ productL._id }}">
                
                 </a>
