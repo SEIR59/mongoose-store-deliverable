@@ -1,0 +1,19 @@
+{% layout "layout.liquid" %} {% block content %}
+    <div>
+        {% comment %} <a href="/fruits/new"><button>Create A New Fruit</button></a> {% endcomment %}
+        {% comment %} <a href="/users/logout"><button>Logout</button></a> {% endcomment %}
+
+        {% comment %} {% for fruit in fruits %}
+            <article>
+                <a href="/products/{{ fruit._id }}">
+                <h2>
+                    {{fruit.name}} - {% if fruit.readyToEat == true %} Ripe 
+                    {% else %} 
+                    Not Ripe 
+                    {% endif %}
+                </h2>
+                </a>
+            </article>
+        {% endfor %} {% endcomment %}
+    </div>
+{% endblock %}
