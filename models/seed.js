@@ -5,7 +5,7 @@
 // Import Dependencies
 ///////////////////////////////////////
 const mongoose = require("./connections.js");
-const Fruit = require("./product.js");
+const Product = require("./product.js");
 
 ///////////////////////////////////////////
 // Seed Code
@@ -21,7 +21,7 @@ db.on("open", () => {
   //////////////////////////////////////////////
 
   // Run any database queries in this function
-  const startFruits = [
+  const startProducts = [
     { 
         name: "Orange", 
         color: "orange", 
@@ -50,13 +50,13 @@ db.on("open", () => {
   ];
 
   // Delete all fruits
-  Fruit.deleteMany({})
-    .then((deletedFruits) => {
+  Product.deleteMany({})
+    .then((deletedProducts) => {
       // add the starter fruits
-      Fruit.create(startFruits)
-        .then((newFruits) => {
+      Product.create(startProducts)
+        .then((newProducts) => {
           // log the new fruits to confirm their creation
-          console.log(newFruits);
+          console.log(newProducts);
           db.close();
         })
         .catch((error) => {

@@ -9,19 +9,7 @@ const methodOverride = require("method-override");
 const path = require("path")
 
 const ProductRouter = require("./controllers/products.js")
-const UserRouter = require("./controllers/users.js")
-// const session = require("express-session") // for authorization
-// const MongoStore = require("connect-mongo"); //what connects to the mongo database
 
-/////////////////////////////////////////////
-// Database Connection
-/////////////////////////////////////////////
-// Setup inputs for our connect function
-const DATABASE_URL = process.env.DATABASE_URL;
-const CONFIG = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-};
 
 
 /////////////////////////////////////////////////
@@ -45,9 +33,6 @@ app.use(express.static("public")); // serve files from public statically
 // Routes (Root Route)
 ////////////////////////////////////////////
 app.use("/products", ProductRouter); //now has access to all routes in fruits.js and will put the /fruit in front of every route created within that router
-
-app.use("/users", UserRouter); // send all "/user" routes to user router
-
 
 // app.get("/", (req, res) => { //leave this one in server!!!
 //   res.send(`your server is running... you better catch it.`);
