@@ -132,6 +132,13 @@ app.get("/fruits/:id", (req, res) => {
     });
 });
 
+//New
+// new route
+app.get("/store/new", (req, res) => {
+  res.render("products/new");
+});
+
+
 
 
 

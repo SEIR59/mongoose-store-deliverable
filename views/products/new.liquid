@@ -1,0 +1,16 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+  <form action="/store" method="post">
+    <fieldset>
+      <legend>Create a New Product</legend>
+      <label>
+        NAME:<input type="text" name="name" placeholder="enter product name" />
+      </label>
+      <label>
+        description<input type="text" name="color" placeholder="enter product description" />
+      </label>
+    </fieldset>
+    <input type="submit" value="create new product" />
+  </form>
+</div>
+{% endblock %}
