@@ -88,6 +88,63 @@ app.get("/products", (req, res) => {
       res.render("products/index.liquid", { products });
     });
   });
+
+  // new route
+app.get("/products/new", (req, res) => {
+    res.render("products/new.liquid");
+  });
+
+  //update route
+app.put("/products/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // update the product
+    Product.findByIdAndUpdate(id, req.body, { new: true })
+      .then((product) => {
+        // redirect to main page after updating
+        res.redirect("/products");
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
+  
+  
+
+  // create route
+app.post("/products", (req, res) => {
+    // create the new fruit
+    Product.create(req.body)
+      .then((products) => {
+        // redirect user to index page if successfully created item
+        res.redirect("/products");
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
+  
+  // edit route
+app.get("/products/:id/edit", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // get the fruit from the database
+    Product.findById(id)
+      .then((product) => {
+        // render edit page and send product data
+        res.render("products/edit.liquid", { product });
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
+  
   
 
 
