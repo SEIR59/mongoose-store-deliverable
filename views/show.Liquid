@@ -11,7 +11,9 @@
         {% if product.qty > 0%} 
         Remaining Supply: {{product.qty}}
         <br>
-        <a href="/products/{{product._id}}/buy">Add Item To Cart?</a>
+        <form action="/products/{{product._id}}/buy?_method=PUT" method="post">
+            <input type="submit" value="Buy Item">
+        </form>
         {% else %} This item is out of stock!
         {% endif %}
         <br>
