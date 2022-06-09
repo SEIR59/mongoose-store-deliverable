@@ -24,13 +24,23 @@
         .out-of-stock {
             color: red;
         }
+        .buttons-list a, 
+        .buttons-list form {
+            display: inline-block;
+        }
     </style>
 </head>
 
 <body>
     <h1 class="align-center">Show</h1>
-    <div class="align-center">
+    <div class="align-center buttons-list">
         <a href="/products/"><button type="button" class="btn btn-dark">All Products</button></a>
+        <form action="">
+            <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+        <form action="">
+            <input type="submit" class="btn btn-warning" value="Edit">
+        </form>
     </div>
     <div class="align-center">
         {% for property in product%}
