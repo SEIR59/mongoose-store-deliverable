@@ -56,9 +56,9 @@ app.get("/products", (req, res) => {
 });
 
 // // new route
-// app.get("products/new", (req, res) => {
-//   res.render("products/new.liquid");
-// });
+app.get("/products/new", (req, res) => {
+  res.render("products/new.liquid");
+});
 
 // show route
 app.get("/products/:id", (req, res) => {
@@ -82,10 +82,10 @@ app.get("/products/:id", (req, res) => {
 });
 
 // post server for change qty
-app.post("/products/:id", async (req, res) => {
+app.put("/products/:id", async (req, res) => {
   const id = req.params.id;
-  console.log(id);
-  await Product.findOneAndUpdate({ id }, { $inc: { qty: -1 } });
+
+  await Product.findByIdAndUpdate(id, { $inc: { qty: -1 } }, { new: true });
 
   res.redirect(`/products/${id}`);
 });
