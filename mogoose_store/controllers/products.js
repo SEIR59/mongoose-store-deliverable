@@ -21,6 +21,7 @@ router.use((req, res, next) => {
 /////////////////////////////////////////
 // Routes
 /////////////////////////////////////////
+
 // Index Route
 router.get("/", (req, res) => {
   ProductModel.find({})
@@ -87,12 +88,31 @@ router.get("/:id/edit", (req, res) => {
     });
 });
 
-//update route
-router.put("/:id", (req, res) => {
+//update route - from edit.liquid
+router.put("/edit/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
   // update the product
   ProductModel.findByIdAndUpdate(id, req.body, { new: true })
+    .then((p) => {
+      // redirect to main page after updating
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+///////////////////
+// buy update route
+///////////////////
+router.put("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // update the product
+  ProductModel.findByIdAndUpdate(id, { $inc: { qty: -1 } }, { new: true })
     .then((p) => {
       // redirect to main page after updating
       res.redirect("/products");
