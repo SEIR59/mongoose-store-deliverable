@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <title>New</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-left: 25%;
+        }
+        label {
+            margin: 0.5%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="title title-align">Add a Product</h1>
+    <form action="/product" method="POST">
+        <label>
+            NAME:<input type="text" name="name"/>
+        </label><br>
+        <label>
+            DESCRIPTION:<input type="text" name="description"/>
+        </label><br>
+        <label>
+            IMAGE URL:<input type="text" name="img" value="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fproducts-icon%2Fproducts-icon-9.jpg&f=1&nofb=1"/>
+        </label><br>
+        <label>
+            PRICE:<input type="text" name="price"/>
+        </label><br>
+        <label>
+            QUANTITY:<input type="text" name="qty"/>
+        </label><br>
+        <input type="submit" value="Add new product" />
+    </form>
+</body>
+</html>
