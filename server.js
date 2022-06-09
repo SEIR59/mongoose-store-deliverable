@@ -104,6 +104,39 @@ app.post("/products", (req, res) => {
     });
 });
 
+// edit route
+app.get("/products/:id/edit", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // get the product from the database
+  Product.findById(id)
+    .then((product) => {
+      // render edit page and send product data
+      res.render("products/edit.liquid", { product });
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+//update route
+app.put("/products/edit/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  Product.findByIdAndUpdate(id, req.body, { new: true })
+    .then((product) => {
+      // redirect to main page after updating
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 // delete route
 app.delete("/products/:id", (req, res) => {
   // get the id from params

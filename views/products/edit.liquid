@@ -1,0 +1,54 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+  <form action="/products/edit/{{ product._id }}?_method=PUT" method="post">
+    <fieldset>
+      <legend>Edit {{ product.name }}</legend>
+      <label>
+        Name:<input
+          type="text"
+          name="name"
+          placeholder="enter product name"
+          value="{{ product.name }}"
+        />
+      </label>
+      <label>
+        Description:
+        <textarea
+          name="description"
+          rows="4"
+          cols="50"
+          placeholder="enter product description"
+          >{{ product.description }}</textarea
+        >
+      </label>
+      <label>
+        Image:
+        <input
+          type="url"
+          name="img"
+          placeholder="enter product url"
+          value="{{ product.img }}"
+        />
+      </label>
+      <label>
+        Price:<input
+          type="number"
+          name="price"
+          placeholder="enter product price"
+          value="{{ product.price }}"
+        />
+      </label>
+      <label>
+        Quantity:<input
+          type="number"
+          name="qty"
+          placeholder="enter product quantity"
+          value="{{ product.qty }}"
+        />
+      </label>
+    </fieldset>
+    <input type="submit" value="Confirm Update" />
+  </form>
+  <a href="/products/"><button>Back to Products</button></a>
+</div>
+{% endblock %}
