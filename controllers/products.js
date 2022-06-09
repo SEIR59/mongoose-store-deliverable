@@ -11,18 +11,6 @@ const Product = require("../models/product.js");
 const router = express.Router();
 //change all instances of router. get etc, to router
 
-////////////////////////////////////////
-// Router Middleware
-////////////////////////////////////////
-// Authorization Middleware
-// router.use((req, res, next) => {
-//   //now you can't access "/fruits" w/o logging in first
-//   if (req.session.loggedIn) {
-//     next();
-//   } else {
-//     res.redirect("/users/login");
-//   }
-// });
 
 /////////////////////////////////////////
 // Routes - all fruit routes specifically
@@ -73,20 +61,12 @@ router.get("/seed", (req, res) => {
 // Index Route / The Async/Await Method
 
 // // index route / will only show the loggin in user fruits
-// router.get("/", (req, res) => {
-//   // find all the fruits
-//   Product.find({ username: req.session.username })
-//     // render a template after they are found
-//     .then((products) => {
-//       console.log(products);
-//       res.render("products/index.liquid", { products });
-//     })
-//     // send error as json if they aren't
-//     .catch((error) => {
-//       console.log(error);
-//       res.json({ error });
-//     });
-// });
+router.get("/", async (req, res) => {
+    //async looks for any kind of awaits - async knows it has to wait for await to finsh running before it will run it's function
+    const products = await Product.find({}); // Fruits.find({}) takes a long time to run
+    // await has it wait a second allowing Fruits.find({}) to run before it runs allowing the data to be retrived from the database
+    res.render("products/index.liquid", { products });
+  });
 
 // don't need this any more but keeping as an example of the async / await method
 // router.get("/", async (req, res) => {
