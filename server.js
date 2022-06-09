@@ -190,6 +190,40 @@ app.put("/store/:id", (req, res) => {
 });
 
 
+app.put("/store/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // update the 
+  Product.findByIdAndUpdate(id, req.body, { new: true })
+    .then((product) => {
+      // redirect to main page after updating
+      res.redirect("/store");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+//delete
+app.delete("/store/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // delete the fruit
+  Product.findByIdAndRemove(id)
+    .then((product) => {
+      // redirect to main page after deleting
+      res.redirect("/store");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+
 
 
 
