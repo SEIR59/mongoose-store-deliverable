@@ -5,8 +5,6 @@ const express = require("express"); // import express
 const morgan = require("morgan"); //import morgan
 const methodOverride = require("method-override");
 const path = require("path")
-const mongoose = require('./models/connections.js')
-const Product = require('./models/product.js')
 const storeRouter = require('./controllers/store-controller.js')
 //model represents 
 
