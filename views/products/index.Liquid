@@ -5,15 +5,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="app.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <title>Index</title>
+    <style>
+        .align-center {
+            margin: 2%;
+            text-align: center;
+        }
+
+        .product-container {
+            text-align: center;
+            background-color: lightcyan;
+            border: 0.5px solid black;
+        }
+
+        .product-container a img {
+            margin-bottom: 10%;
+            border: 0.2px solid black;
+        }
+
+        .product-container a img:hover {
+            opacity: 50%;
+        }
+    </style>
 </head>
 
 <body>
-    <h1 class="title title-align">Mongoose Store</h1>
-    <div class="button-align">
+    <h1 class="title align-center">Mongoose Store</h1>
+    <div class="align-center">
         <a href="/products/new"><button type="button" class="btn btn-dark">Add a Product</button></a>
     </div>
     <div class="container">
@@ -21,7 +41,7 @@
             {% for product in products %}
                 <div class="col product-container">
                     <h3>{{product.name}}</h3>
-                    <a href="/products/show"><img src="{{product.img}}" alt="{{product.name}} image" class="image-link"></a>
+                    <a href="/products/show"><img src="{{product.img}}" alt="{{product.name}} image" class="image-link" width="200px"></a>
                     <h6>Price: {{product.price}}</h6>
                     <h6>Quantity: {{product.qty}}</h6>
                 </div>

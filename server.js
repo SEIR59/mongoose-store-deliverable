@@ -14,7 +14,6 @@ const app = require("liquid-express-views")(express(), { root: [path.resolve(__d
 // middleware
 app.use(methodOverride("_method"))
 app.use(express.urlencoded({extended: true}))
-app.use(express.static("public"))
 
 // routes 
 app.use("/products", ProductRouter)
