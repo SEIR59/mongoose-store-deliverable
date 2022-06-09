@@ -24,7 +24,6 @@ Router.get('/new', async (req, res) => {
 Router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findById({ _id: req.params.id });
-    console.log(product);
     res.render('products/show', { product });
   } catch (error) {
     res.send(error);
@@ -35,7 +34,6 @@ Router.get('/:id', async (req, res) => {
 Router.post('/', async (req, res) => {
   try {
     const product = await Product.create(req.body);
-    console.log(product);
     res.redirect('/products');
   } catch (error) {
     res.send(error);
@@ -46,7 +44,6 @@ Router.post('/', async (req, res) => {
 Router.get('/edit/:id', async (req, res) => {
   try {
     const product = await Product.findById({ _id: req.params.id });
-    console.log(product);
     res.render('products/edit', { product });
   } catch (error) {
     res.send(error);
@@ -75,14 +72,12 @@ Router.put('/:id', async (req, res) => {
 
 // ! Buy Route
 Router.put('/buy/:id', async (req, res) => {
-  const { id } = req.params;
-    try {
-      await Product.updateOne({ _id: id }, {$inc: { qty: -1 }});
-    } catch (error) {
-      res.send(error);
-    }
-    res.redirect(`/products/${id}`);
- 
+  try {
+    await Product.updateOne({ _id: id }, { $inc: { qty: -1 } });
+    res.redirect(`/products/${req.params.id}`);
+  } catch (error) {
+    res.send(error);
+  }
 });
 
 // ! Delete Route
