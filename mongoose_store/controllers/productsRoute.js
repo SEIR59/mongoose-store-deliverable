@@ -76,18 +76,13 @@ Router.put('/:id', async (req, res) => {
 // ! Buy Route
 Router.put('/buy/:id', async (req, res) => {
   const { id } = req.params;
-  try {
-    const product = await Product.findById(id);
-    const { qty } = product;
     try {
-      await Product.findByIdAndUpdate({ _id: id }, { qty: qty - 1 });
+      await Product.updateOne({ _id: id }, {$inc: { qty: -1 }});
     } catch (error) {
       res.send(error);
     }
     res.redirect(`/products/${id}`);
-  } catch (error) {
-    res.send(error);
-  }
+ 
 });
 
 // ! Delete Route

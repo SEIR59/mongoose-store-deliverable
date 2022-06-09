@@ -29,7 +29,7 @@ app.use('/products', productsRoute);
 
 
 app.get('/', (req, res) => {
-  res.send('Hello, World!');
+  res.redirect('/products')
 });
 
 //* -------------------------------------------------------------------------- */
