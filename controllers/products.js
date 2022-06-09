@@ -1,21 +1,21 @@
-const express = require('express')
-const Product = require('../models/product')
+// const express = require('express')
+// const Product = require('../models/product')
 
-// CREATE ROUTE
+// // CREATE ROUTE
 
-const router = express.Router()
+// const router = express.Router()
 
 
-// ROUTES
+// // ROUTES
 
-router.get('/', (req, res) =>{
-    //find all the products
-    Product.find({})
-    .then(products => {
-        console.log(products)
-        res.render('products/index.liquid', {products})
-    })
-    .catch(error => console.log(error))
-})
+// router.get('/', (req, res) =>{
+//     //find all the products
+//     Product.find({})
+//     .then(products => {
+//         console.log(products)
+//         res.render('products/index.liquid', {products})
+//     })
+//     .catch(error => console.log(error))
+// })
 
-module.exports = router
+// module.exports = router
