@@ -6,8 +6,7 @@ const express = require('express')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
 const path = require('path')
-const storeRouter = require('./models/products.js')
-
+const storesRouter = require('./controllers/products.js')
 /////////////////////////////////////////////////
 // Create our Express Application Object Bind Liquid Templating Engine
 /////////////////////////////////////////////////
@@ -20,9 +19,13 @@ app.use(morgan("tiny")); //logging
 app.use(methodOverride("_method")); // override for put and delete requests from forms
 app.use(express.urlencoded({ extended: true })); // parse urlencoded request bodies
 app.use(express.static("public")); // serve files from public statically
+///////////////////////////////////////////////////
+//ROUTERS
+///////////////////////////////////////////////////
+app.use('/store', storesRouter)
 
 app.get("/", (req, res) => {
-    res.send("3000")
+    res.render("layout.liquid")
   })
 
 

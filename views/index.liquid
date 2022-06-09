@@ -4,9 +4,9 @@
     <a href="/sotre/logout"><button>Logout</button></a>
   {% for p in products %}
   <article>
-    <a href="/store/{{ newProduct._id }}">
+    <a href="/store/{{ p._id }}">
       <h2>
-        {{newProduct.name}} - {% if fruit.readyToEat == true %} Ripe {% else %} Not
+        {{p.name}} - {% if fruit.readyToEat == true %} Ripe {% else %} Not
         Ripe {% endif %}
       </h2>
     </a>

@@ -3,6 +3,11 @@
 //////////////////////////////////////
 const express = require("express");
 
+/////////////////////////////////////////
+// Create Route
+/////////////////////////////////////////
+const router = express.Router();
+
 //Index Route
 router.get("/", async (req, res) => {
     const stores = await Store.find({});
@@ -22,7 +27,7 @@ router.get("/", async (req, res) => {
     req.body.username = req.session.username;
     // create the new fruit
     Store.create(req.body)
-      .then((fruits) => {
+      .then((stores) => {
         // redirect user to index page if successfully created item
         res.redirect("/view");
       })
@@ -39,7 +44,7 @@ router.get("/", async (req, res) => {
     const id = req.params.id;
     // get the fruit from the database
     Store.findById(id)
-      .then((fruit) => {
+      .then((stores) => {
         // render edit page and send fruit data
         res.render("views/edit.liquid", { fruit });
       })

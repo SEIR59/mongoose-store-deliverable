@@ -1,14 +1,14 @@
-<!-- {% layout "layout.liquid" %} {% block content %}
+{% layout "layout.liquid" %} {% block content %}
 <div>
-  <form action="/fruits/{{fruit._id}}?_method=PUT" method="post">
+  <form action="/store/{{._id}}?_method=PUT" method="post">
     <fieldset>
-      <legend>Edit {{fruit.name}}</legend>
+      <legend>Edit {{newProduct.name}}</legend>
       <label>
         NAME:<input
           type="text"
           name="name"
           placeholder="enter fruit name"
-          value="{{fruit.name}}"
+          value="{{newProduct.name}}"
         />
       </label>
       <label>
@@ -16,17 +16,11 @@
           type="text"
           name="color"
           placeholder="enter fruit name"
-          value="{{fruit.color}}"
+          value="{{newProduct.color}}"
         />
       </label>
-      <label>
-        READY TO EAT:<input
-         type="checkbox" 
-         name="readyToEat"
-          {% if fruit.readyToEat == true %} checked {% endif %} />
-      </label>
     </fieldset>
-    <input type="submit" value="Edit {{fruit.name}}" />
+    <input type="submit" value="Edit {{newProduct.name}}" />
   </form>
 </div>
-{% endblock %} -->
+{% endblock %}
