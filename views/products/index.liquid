@@ -1,10 +1,10 @@
 {% layout "layout.liquid" %} {% block content %}
 <div>
-  {% for product in products %}
+  {% for item in product %}
   <article>
-    <a href="/fruits/{{ product._id }}">
+    <a href="/store/{{ item._id }}">
       <h2>
-        {{product.name}} 
+        {{item.name}} 
       </h2>
     </a>
   </article>

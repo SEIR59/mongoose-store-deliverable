@@ -46,6 +46,8 @@ const productsSchema = new Schema({
 // make Products model
 const Product = model("Product", productsSchema);
 
+//model represents 
+
 
 /////////////////////////////////////////////////
 // Create our Express Application Object Bind Liquid Templating Engine
@@ -102,11 +104,11 @@ app.get('/seed', async (req, res) => {
 //Index
 // index route
 app.get("/store", (req, res) => {
-  // find all the products
+  // find all the products// Products refers to the collections. 
   Product.find({})
     // render a template after they are found
-    .then((products) => {
-      res.render("products/index.liquid", { products });
+    .then((product) => {
+      res.render("products/index", { product });
     })
     // send error as json if they aren't
     .catch((error) => {
@@ -116,7 +118,7 @@ app.get("/store", (req, res) => {
 
 //Show 
 // show route
-app.get("/fruits/:id", (req, res) => {
+app.get("/store/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
 
@@ -124,7 +126,7 @@ app.get("/fruits/:id", (req, res) => {
   Product.findById(id)
     .then((product) => {
       // render the template with the data from the database
-      res.render("products/show.liquid", { product });
+      res.render("products/show", { product });
     })
     .catch((error) => {
       console.log(error);
@@ -137,6 +139,58 @@ app.get("/fruits/:id", (req, res) => {
 app.get("/store/new", (req, res) => {
   res.render("products/new");
 });
+
+// create route
+app.post("/store", (req, res) => {
+  
+  // create the new fruit
+  Product.create(req.body)
+    .then((products) => {
+      // redirect user to index page if successfully created item
+      res.redirect("/store");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+// edit route
+app.get("/store/:id/edit", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // get the fruit from the database
+  Product.findById(id)
+    .then((product) => {
+      // render edit page and send fruit data
+      res.render("products/edit.liquid", { product });
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+//update route
+app.put("/store/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // update the 
+  Product.findByIdAndUpdate(id, req.body, { new: true })
+    .then((product) => {
+      // redirect to main page after updating
+      res.redirect("/store");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+
 
 
 
