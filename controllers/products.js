@@ -61,7 +61,24 @@ router.delete("/:id", (request, response) => {
 
 // update route
 router.put("/:id", (request, response) => {
-    response.send("update route")
+    Product.updateOne({_id: request.params.id}, 
+        {$set: {
+            qty: request.body.qty, 
+            name: request.body.name, 
+            img: request.body.img,
+            description: request.body.description,
+            price: request.body.price
+        }})
+        .then((product) => {
+            // redirect to main page after updating
+            console.log(product)
+            response.redirect("/products");
+        })
+        // send error as json
+        .catch((error) => {
+            console.log(error);
+            response.json({ error });
+        });
 })
 
 // create route
@@ -79,11 +96,11 @@ router.post("/", (request, response) => {
 // edit route
 router.get("/:id/edit", (request, response) => {
     Product.findById(request.params.id)
-    .then((product) => {
-        response.render("products/edit", {
-            product: product
+        .then((product) => {
+            response.render("products/edit", {
+                product: product
+            })
         })
-    })
 })
 
 // show route
