@@ -4,11 +4,11 @@
   {% for product in products %}
   <article>
     <div class="item-div">
-    <h2>
-      {{ product.name }}
-    </h2>
     <a href="/products/{{ product._id }}">
-      <img src="{{ product.img }}" alt="" />
+      <h2>
+        {{ product.name }}
+      </h2>
+      <img src="{{ product.img }}" />
     </a>
     <br>
     {{ product.qty }} in Stock!
