@@ -1,4 +1,4 @@
-# Full Stack Fruits Build with Mongo and Express
+# Full Stack Products Build with Mongo and Express
 
 ### Part 1 - Setup, Index, Show, New, Create
 
@@ -90,7 +90,7 @@ mongoose.connection
   .on("error", (error) => console.log(error));
 ```
 
-### Create Our Fruits Model
+### Create Our Products Model
 
 ```js
 ////////////////////////////////////////////////
@@ -99,15 +99,15 @@ mongoose.connection
 // pull schema and model from mongoose
 const { Schema, model } = mongoose;
 
-// make fruits schema
-const fruitsSchema = new Schema({
+// make products schema
+const productsSchema = new Schema({
   name: String,
   color: String,
   readyToEat: Boolean,
 });
 
-// make fruit model
-const Fruit = model("Fruit", fruitsSchema);
+// make product model
+const Product = model("Product", productsSchema);
 ```
 
 ### Create App Object
@@ -191,15 +191,15 @@ mongoose.connection
 // pull schema and model from mongoose
 const { Schema, model } = mongoose;
 
-// make fruits schema
-const fruitsSchema = new Schema({
+// make products schema
+const productsSchema = new Schema({
   name: String,
   color: String,
   readyToEat: Boolean,
 });
 
-// make fruit model
-const Fruit = model("Fruit", fruitsSchema);
+// make product model
+const Product = model("Product", productsSchema);
 
 /////////////////////////////////////////////////
 // Create our Express Application Object
@@ -243,9 +243,9 @@ We'll create a seed route for now, later I'll also show you how to setup a seed 
 Add This to your routes
 
 ```js
-app.get("/fruits/seed", (req, res) => {
-  // array of starter fruits
-  const startFruits = [
+app.get("/products/seed", (req, res) => {
+  // array of starter products
+  const startProducts = [
     { name: "Orange", color: "orange", readyToEat: false },
     { name: "Grape", color: "purple", readyToEat: false },
     { name: "Banana", color: "orange", readyToEat: false },
@@ -253,20 +253,20 @@ app.get("/fruits/seed", (req, res) => {
     { name: "Coconut", color: "brown", readyToEat: false },
   ];
 
-  // Delete all fruits
-  Fruit.deleteMany({}).then((data) => {
-    // Seed Starter Fruits
-    Fruit.create(startFruits).then((data) => {
-      // send created fruits as response to confirm creation
+  // Delete all products
+  Product.deleteMany({}).then((data) => {
+    // Seed Starter Products
+    Product.create(startProducts).then((data) => {
+      // send created products as response to confirm creation
       res.json(data);
     });
   });
 });
 ```
 
-now we can use the url `/fruits/seed` as a reset button on our data, great for development. Keep in mind you would want to comment this out in production so users can't reset your data by accident.
+now we can use the url `/products/seed` as a reset button on our data, great for development. Keep in mind you would want to comment this out in production so users can't reset your data by accident.
 
-## Index Route (Get => /fruits)
+## Index Route (Get => /products)
 
 Mongoose allows you to write your queries in three ways
 
@@ -280,12 +280,12 @@ So here is how the route would look like all three ways:
 
 ```js
 // index route
-app.get("/fruits", (req, res) => {
-  // find all the fruits
-  Fruit.find({})
+app.get("/products", (req, res) => {
+  // find all the products
+  Product.find({})
     // render a template after they are found
-    .then((fruits) => {
-      res.render("fruits/index.liquid", { fruits });
+    .then((products) => {
+      res.render("products/index.liquid", { products });
     })
     // send error as json if they aren't
     .catch((error) => {
@@ -298,9 +298,9 @@ app.get("/fruits", (req, res) => {
 
 ```js
 // index route
-app.get("/fruits", (req, res) => {
-  Fruit.find({}, (err, fruits) => {
-    res.render("fruits/index.liquid", { fruits });
+app.get("/products", (req, res) => {
+  Product.find({}, (err, products) => {
+    res.render("products/index.liquid", { products });
   });
 });
 ```
@@ -309,9 +309,9 @@ app.get("/fruits", (req, res) => {
 
 ```js
 // index route
-app.get("/fruits", async (req, res) => {
-  const fruits = await Fruits.find({});
-  res.render("fruits/index.liquid", { fruits });
+app.get("/products", async (req, res) => {
+  const products = await Products.find({});
+  res.render("products/index.liquid", { products });
 });
 ```
 
@@ -321,7 +321,7 @@ app.get("/fruits", async (req, res) => {
 
 - in the public folder let's make a css and javascript file `touch public/styles.css public/app.js`
 
-- make a fruits folder in views `mkdir views/fruits`
+- make a products folder in views `mkdir views/products`
 
 - make a layout.liquid in your views folder `touch views/layout.liquid`
 
@@ -334,7 +334,7 @@ app.get("/fruits", async (req, res) => {
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Fruits Website</title>
+    <title>My Products Website</title>
     <!-- Milligram CSS for Some Default Styling -->
     <!-- Google Fonts -->
     <link
@@ -367,7 +367,7 @@ app.get("/fruits", async (req, res) => {
   </head>
   <body>
     <header>
-      <h1>The Fruits App</h1>
+      <h1>The Products App</h1>
     </header>
 
     <main>{% block content %}My default content{% endblock %}</main>
@@ -377,16 +377,16 @@ app.get("/fruits", async (req, res) => {
 </html>
 ```
 
-then put the following in the views/fruits/index.liquid
+then put the following in the views/products/index.liquid
 
 ```html
 {% layout "layout.liquid" %} {% block content %}
 <div>
-  {% for fruit in fruits %}
+  {% for product in products %}
   <article>
-    <a href="/fruits/{{ fruit._id }}">
+    <a href="/products/{{ product._id }}">
       <h2>
-        {{fruit.name}} - {% if fruit.readyToEat == true %} Ripe {% else %} Not
+        {{product.name}} - {% if product.readyToEat == true %} Ripe {% else %} Not
         Ripe {% endif %}
       </h2>
     </a>
@@ -396,23 +396,23 @@ then put the following in the views/fruits/index.liquid
 {% endblock %}
 ```
 
-Now we can see the list of fruits and whether they are ripe or not, except they all have links that don't take us anywhere... because we still need to make the show route and view.
+Now we can see the list of products and whether they are ripe or not, except they all have links that don't take us anywhere... because we still need to make the show route and view.
 
-## The Show Route (GET => /fruits/:id)
+## The Show Route (GET => /products/:id)
 
 Add the following route to server.js (remember, always keep the show route at the bottom to avoid route naming collisions)
 
 ```js
 // show route
-app.get("/fruits/:id", (req, res) => {
+app.get("/products/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
 
-  // find the particular fruit from the database
-  Fruit.findById(id)
-    .then((fruit) => {
+  // find the particular product from the database
+  Product.findById(id)
+    .then((product) => {
       // render the template with the data from the database
-      res.render("fruits/show.liquid", { fruit });
+      res.render("products/show.liquid", { product });
     })
     .catch((error) => {
       console.log(error);
@@ -421,14 +421,14 @@ app.get("/fruits/:id", (req, res) => {
 });
 ```
 
-- now create `views/fruits/show.liquid`
+- now create `views/products/show.liquid`
 
 ```html
 {% layout "layout.liquid" %} {% block content %}
       <div>
         <article>
           <h2>
-            {{ fruit.name }} -
+            {{ product.name }} -
             
             {% if readyToEat == true %}
             Ready to Eat
@@ -436,63 +436,63 @@ app.get("/fruits/:id", (req, res) => {
             Not Ready to Eat
             {% endif %}
           </h2>
-          <h3>{{ fruit.color }}</h3>
-          <a href="/fruits/{{ fruit._id }}/edit"><button>Edit</button></a>
-          <form action="/fruits/{{ fruit._id }}?_method=DELETE" method="POST">
+          <h3>{{ product.color }}</h3>
+          <a href="/products/{{ product._id }}/edit"><button>Edit</button></a>
+          <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
             <input type="submit" value="Delete" />
           </form>
-          <a href="/fruits/"><button>Back to Main</button></a>
+          <a href="/products/"><button>Back to Main</button></a>
         </article>
       </div>
 {% endblock %}
 ```
 
-So now we can see an individual fruit, we have the delete and edit button setup for later. But before we set that up let's make sure we can create a fruit!
+So now we can see an individual product, we have the delete and edit button setup for later. But before we set that up let's make sure we can create a product!
 
-## New Route (GET => /fruits/new)
+## New Route (GET => /products/new)
 
-This route should render a form for the user to create a new fruit, let's add the route! (Remember it should be above your show route)
+This route should render a form for the user to create a new product, let's add the route! (Remember it should be above your show route)
 
 ```js
 // new route
-app.get("/fruits/new", (req, res) => {
-  res.render("fruits/new.liquid");
+app.get("/products/new", (req, res) => {
+  res.render("products/new.liquid");
 });
 ```
 
-- let's create `views/fruits/new.liquid`
+- let's create `views/products/new.liquid`
 
 ```html
 {% layout "layout.liquid" %} {% block content %}
 <div>
-  <form action="/fruits" method="post">
+  <form action="/products" method="post">
     <fieldset>
-      <legend>Create a New Fruit</legend>
+      <legend>Create a New Product</legend>
       <label>
-        NAME:<input type="text" name="name" placeholder="enter fruit name" />
+        NAME:<input type="text" name="name" placeholder="enter product name" />
       </label>
       <label>
-        COLOR:<input type="text" name="color" placeholder="enter fruit name" />
+        COLOR:<input type="text" name="color" placeholder="enter product name" />
       </label>
       <label> READY TO EAT:<input type="checkbox" name="readyToEat" /> </label>
     </fieldset>
-    <input type="submit" value="create new fruit" />
+    <input type="submit" value="create new product" />
   </form>
 </div>
 {% endblock %}
 ```
 
-- let's add a link to this page in fruits/index.liquid
+- let's add a link to this page in products/index.liquid
 
 ```html
 {% layout "layout.liquid" %} {% block content %}
 <div>
-  <a href="/fruits/new"><button>Create A New Fruit</button></a>
-  {% for fruit in fruits %}
+  <a href="/products/new"><button>Create A New Product</button></a>
+  {% for product in products %}
   <article>
-    <a href="/fruits/{{ fruit._id }}">
+    <a href="/products/{{ product._id }}">
       <h2>
-        {{fruit.name}} - {% if fruit.readyToEat == true %} Ripe {% else %} Not
+        {{product.name}} - {% if product.readyToEat == true %} Ripe {% else %} Not
         Ripe {% endif %}
       </h2>
     </a>
@@ -504,20 +504,20 @@ app.get("/fruits/new", (req, res) => {
 
 Form looks good but it has no create route to submit the forms data too! Let's take care of that!
 
-## Create Route (POST => /fruits)
+## Create Route (POST => /products)
 
 - let's add the route (location for this route doesn't particularly matter, but your always safe with INDUCES)
 
 ```js
 // create route
-app.post("/fruits", (req, res) => {
+app.post("/products", (req, res) => {
   // check if the readyToEat property should be true or false
   req.body.readyToEat = req.body.readyToEat === "on" ? true : false;
-  // create the new fruit
-  Fruit.create(req.body)
-    .then((fruits) => {
+  // create the new product
+  Product.create(req.body)
+    .then((products) => {
       // redirect user to index page if successfully created item
-      res.redirect("/fruits");
+      res.redirect("/products");
     })
     // send error as json
     .catch((error) => {
@@ -527,22 +527,22 @@ app.post("/fruits", (req, res) => {
 });
 ```
 
-Now you should be able to add fruits!
+Now you should be able to add products!
 
-## Edit Route (GET => /fruits/:id/edit)
+## Edit Route (GET => /products/:id/edit)
 
-This route should produce a form to edit the fruit with the specified id. Let's make the route, make sure it's above the show route.
+This route should produce a form to edit the product with the specified id. Let's make the route, make sure it's above the show route.
 
 ```js
 // edit route
-app.get("/fruits/:id/edit", (req, res) => {
+app.get("/products/:id/edit", (req, res) => {
   // get the id from params
   const id = req.params.id;
-  // get the fruit from the database
-  Fruit.findById(id)
-    .then((fruit) => {
-      // render edit page and send fruit data
-      res.render("fruits/edit.liquid", { fruit });
+  // get the product from the database
+  Product.findById(id)
+    .then((product) => {
+      // render edit page and send product data
+      res.render("products/edit.liquid", { product });
     })
     // send error as json
     .catch((error) => {
@@ -552,36 +552,36 @@ app.get("/fruits/:id/edit", (req, res) => {
 });
 ```
 
-- let's make a copy of `views/fruits/new.liquid` and call it `views/fruits/edit.liquid` and refactor it so the form shows the current values of the fruit!
+- let's make a copy of `views/products/new.liquid` and call it `views/products/edit.liquid` and refactor it so the form shows the current values of the product!
 
 ```html
 {% layout "layout.liquid" %} {% block content %}
 <div>
-  <form action="/fruits/{{fruit._id}}?_method=PUT" method="post">
+  <form action="/products/{{product._id}}?_method=PUT" method="post">
     <fieldset>
-      <legend>Edit {{fruit.name}}</legend>
+      <legend>Edit {{product.name}}</legend>
       <label>
         NAME:<input
           type="text"
           name="name"
-          placeholder="enter fruit name"
-          value="{{fruit.name}}"
+          placeholder="enter product name"
+          value="{{product.name}}"
         />
       </label>
       <label>
         COLOR:<input
           type="text"
           name="color"
-          placeholder="enter fruit name"
-          value="{{fruit.color}}"
+          placeholder="enter product name"
+          value="{{product.color}}"
         />
       </label>
       <label>
         READY TO EAT:<input type="checkbox" name="readyToEat" {% if
-        fruit.readyToEat == true %} checked {% endif %} />
+        product.readyToEat == true %} checked {% endif %} />
       </label>
     </fieldset>
-    <input type="submit" value="Edit {{fruit.name}}" />
+    <input type="submit" value="Edit {{product.name}}" />
   </form>
 </div>
 {% endblock %}
@@ -589,22 +589,22 @@ app.get("/fruits/:id/edit", (req, res) => {
 
 Now that edit button we made earlier should take us to the form successfully, but the form doesn't do anything when submitted. That's because we still need to make the update route!
 
-## Update Route (PUT => /fruits/:id)
+## Update Route (PUT => /products/:id)
 
 Let's add the route
 
 ```js
 //update route
-app.put("/fruits/:id", (req, res) => {
+app.put("/products/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
   // check if the readyToEat property should be true or false
   req.body.readyToEat = req.body.readyToEat === "on" ? true : false;
-  // update the fruit
-  Fruit.findByIdAndUpdate(id, req.body, { new: true })
-    .then((fruit) => {
+  // update the product
+  Product.findByIdAndUpdate(id, req.body, { new: true })
+    .then((product) => {
       // redirect to main page after updating
-      res.redirect("/fruits");
+      res.redirect("/products");
     })
     // send error as json
     .catch((error) => {
@@ -614,21 +614,21 @@ app.put("/fruits/:id", (req, res) => {
 });
 ```
 
-Now you can edit fruits
+Now you can edit products
 
-## Destroy (Delete => /fruits/:id)
+## Destroy (Delete => /products/:id)
 
 This last route will allow our delete button to work giving us full CRUD functionality!
 
 ```js
-app.delete("/fruits/:id", (req, res) => {
+app.delete("/products/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
-  // delete the fruit
-  Fruit.findByIdAndRemove(id)
-    .then((fruit) => {
+  // delete the product
+  Product.findByIdAndRemove(id)
+    .then((product) => {
       // redirect to main page after deleting
-      res.redirect("/fruits");
+      res.redirect("/products");
     })
     // send error as json
     .catch((error) => {
@@ -640,4 +640,4 @@ app.delete("/fruits/:id", (req, res) => {
 
 Success, you now have full crud functionality!
 
-[The final code can be seen here](https://git.generalassemb.ly/sei-ec-remote/full-CRUD-fruits-mongoose/tree/refactor1)
+[The final code can be seen here](https://git.generalassemb.ly/sei-ec-remote/full-CRUD-products-mongoose/tree/refactor1)

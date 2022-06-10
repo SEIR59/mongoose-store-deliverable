@@ -2,7 +2,7 @@
 // Import Dependencies
 ////////////////////////////////////////////
 const express = require('express')
-const Fruit = require('../models/fruit')
+const Product = require('../models/product')
 
 ////////////////////////////////////////////
 // Create router
@@ -29,16 +29,16 @@ router.use((req, res, next) => {
 // Routes
 ////////////////////////////////////////////
 
-// index ALL fruits route
+// index ALL products route
 router.get('/', (req, res) => {
-	// find the fruits
-	Fruit.find({})
+	// find the products
+	Product.find({})
 		// then render a template AFTER they're found
-		.then((fruits) => {
+		.then((products) => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
-			// console.log(fruits)
-			res.render('fruits/index', { fruits, username, loggedIn })
+			// console.log(products)
+			res.render('products/index', { products, username, loggedIn })
 		})
 		// show an error if there is one
 		.catch((error) => {
@@ -47,17 +47,17 @@ router.get('/', (req, res) => {
 		})
 })
 
-// index that shows only the user's fruits
+// index that shows only the user's products
 router.get('/mine', (req, res) => {
-	// find the fruits
-	Fruit.find({ username: req.session.username })
+	// find the products
+	Product.find({ username: req.session.username })
 		// then render a template AFTER they're found
-		.then((fruits) => {
-			// console.log(fruits)
+		.then((products) => {
+			// console.log(products)
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
 
-			res.render('fruits/index', { fruits, username, loggedIn })
+			res.render('products/index', { products, username, loggedIn })
 		})
 		// show an error if there is one
 		.catch((error) => {
@@ -70,7 +70,7 @@ router.get('/mine', (req, res) => {
 router.get('/new', (req, res) => {
 	const username = req.session.username
 	const loggedIn = req.session.loggedIn
-	res.render('fruits/new', { username, loggedIn })
+	res.render('products/new', { username, loggedIn })
 })
 
 // create -> POST route that actually calls the db and makes a new document
@@ -80,14 +80,14 @@ router.post('/', (req, res) => {
 	// first part sets the property name
 	// second is a ternary to set the value
 	req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
-	// console.log('this is the fruit to create', req.body)
+	// console.log('this is the product to create', req.body)
 	// now we're ready for mongoose to do its thing
-	// now that we have user specific fruits, we'll add the username to the fruit created
+	// now that we have user specific products, we'll add the username to the product created
 	req.body.username = req.session.username
-	Fruit.create(req.body)
-		.then((fruit) => {
-			console.log('this was returned from create', fruit)
-			res.redirect('/fruits')
+	Product.create(req.body)
+		.then((product) => {
+			console.log('this was returned from create', product)
+			res.redirect('/products')
 		})
 		.catch((err) => {
 			console.log(err)
@@ -98,17 +98,17 @@ router.post('/', (req, res) => {
 // edit route -> GET that takes us to the edit form view
 router.get('/:id/edit', (req, res) => {
 	// we need to get the id
-	const fruitId = req.params.id
-	// find the fruit
-	Fruit.findById(fruitId)
-		// -->render if there is a fruit
-		.then((fruit) => {
-			console.log('edit froot', fruit)
+	const productId = req.params.id
+	// find the product
+	Product.findById(productId)
+		// -->render if there is a product
+		.then((product) => {
+			console.log('edit froot', product)
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
-			res.render('fruits/edit', { fruit, username, loggedIn })
+			res.render('products/edit', { product, username, loggedIn })
 		})
-		// -->error if no fruit
+		// -->error if no product
 		.catch((err) => {
 			console.log(err)
 			res.json(err)
@@ -118,16 +118,16 @@ router.get('/:id/edit', (req, res) => {
 // update route -> sends a put request to our database
 router.put('/:id', (req, res) => {
 	// get the id
-	const fruitId = req.params.id
+	const productId = req.params.id
 	// check and assign the readyToEat property with the correct value
 	req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
-	// tell mongoose to update the fruit
-	Fruit.findByIdAndUpdate(fruitId, req.body, { new: true })
-		// if successful -> redirect to the fruit page
-		.then((fruit) => {
-			console.log('the updated fruit', fruit)
+	// tell mongoose to update the product
+	Product.findByIdAndUpdate(productId, req.body, { new: true })
+		// if successful -> redirect to the product page
+		.then((product) => {
+			console.log('the updated product', product)
 
-			res.redirect(`/fruits/${fruit.id}`)
+			res.redirect(`/products/${product.id}`)
 		})
 		// if an error, display that
 		.catch((error) => res.json(error))
@@ -136,15 +136,15 @@ router.put('/:id', (req, res) => {
 // show route
 router.get('/:id', (req, res) => {
 	// first, we need to get the id
-	const fruitId = req.params.id
-	// then we can find a fruit by its id
-	Fruit.findById(fruitId)
+	const productId = req.params.id
+	// then we can find a product by its id
+	Product.findById(productId)
 		// once found, we can render a view with the data
-		.then((fruit) => {
+		.then((product) => {
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
 
-			res.render('fruits/show', { fruit, username, loggedIn })
+			res.render('products/show', { product, username, loggedIn })
 		})
 		// if there is an error, show that instead
 		.catch((err) => {
@@ -155,13 +155,13 @@ router.get('/:id', (req, res) => {
 
 // delete route
 router.delete('/:id', (req, res) => {
-	// get the fruit id
-	const fruitId = req.params.id
-	// delete the fruit
-	Fruit.findByIdAndRemove(fruitId)
-		.then((fruit) => {
-			console.log('this is the response from FBID', fruit)
-			res.redirect('/fruits')
+	// get the product id
+	const productId = req.params.id
+	// delete the product
+	Product.findByIdAndRemove(productId)
+		.then((product) => {
+			console.log('this is the response from FBID', product)
+			res.redirect('/products')
 		})
 		.catch((error) => {
 			console.log(error)
