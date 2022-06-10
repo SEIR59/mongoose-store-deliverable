@@ -71,6 +71,56 @@ router.get("/:id", (req, res) => {
     });
 });
 
+//update route
+router.put("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  Product.findByIdAndUpdate(id, req.body, { new: true })
+    .then((products) => {
+      // redirect to main page after updating
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+// delete route
+router.delete("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // delete the fruit
+  Product.findByIdAndRemove(id)
+    .then((products) => {
+      // redirect to main page after deleting
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+// edit route
+router.get("/:id/edit", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // get the fruit from the database
+  Product.findById(id)
+    .then((products) => {
+      // render edit page and send fruit data
+      res.render("products/edit.liquid", { products });
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////
