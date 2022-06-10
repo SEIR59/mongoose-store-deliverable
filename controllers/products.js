@@ -123,6 +123,25 @@ router.get("/:id/edit", (req, res) => {
     });
 });
 
+// buy button
+router.put("/:id/buy", (req, res) => {
+  const id = req.params.id;
+  Product.findById(id)
+    .then((product) => {
+      product.qty = product.qty - 1;
+      Product.findByIdAndUpdate(product.id, product, { new: true }).then(
+        (product) => {
+          res.redirect(`/products/${product.id}`);
+        }
+      );
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////
