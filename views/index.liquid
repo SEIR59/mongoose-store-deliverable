@@ -1,0 +1,32 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+  <a href="/products/new"><button>Create A New Product</button></a>
+  {% for product in products %}
+  <article>
+    <div class="products">
+   
+      <a href="/products/{{product._id}}">
+        
+          <img src="{{product.img}}" alt="{{product.name}} image" class="image-link" width="150px" height="150px">
+        
+          <h2>{{product.name}} </h2>
+         
+      </a>
+
+      <h4>Price: {{product.price}} </h4>
+
+      <h4>
+        {% if product.qty == 0 %}
+        SOLD OUT
+        {% else %}
+        Quantity: {{product.qty}}
+        {% endif %}
+      </h4>
+    
+    </div>
+    
+  </article>
+  {% endfor %}
+
+</div>
+{% endblock %}
