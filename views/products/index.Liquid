@@ -1,0 +1,13 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+  <a href="/products/new"><button>Create A New Product</button></a>
+
+  {% for product in products %}
+  <article>
+    <a href="/products/{{ product.name }}">
+      {{ product.name }}
+    </a>
+  </article>
+  {% endfor %}
+</div>
+{% endblock %}

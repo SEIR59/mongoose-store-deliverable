@@ -29,7 +29,7 @@ app.use("/products", ProductRouter); // send all "/fruits" routes to fruit route
 
 // Default Index
 app.get("/", (req, res) => {
-  res.send("Tran Sam Tiras");
+  res.send("hello");
 });
 
 //////////////////////////////////////////////

@@ -1,4 +1,5 @@
-const mongoose = require("mongoose");
+// SCHEMA PAGE
+const mongoose = require("./connection");
 const { Schema, model } = mongoose;
 
 // make fruits schema
