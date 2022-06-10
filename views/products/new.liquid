@@ -1,11 +1,24 @@
 {% layout 'layout.liquid' %} {% block content %}
 <div class="container">
     <article>
-        <h2> {{ product.name }} </h2>
-        <a href="/products/{{ product._id }}">
-            <img src="{{product.img}}" alt="">
-        </a>
-        <h3>Quantity: {{ product.qty }}</h3>
+        <form action="/products" method="POST">
+            <fieldset>
+                <legend>Create a New Soda</legend>
+                <label>
+                    NAME:<input type="text" name="name" placeholder="Name of soda" />
+                </label>
+                <label>
+                    QUANTITY:<input type="text" name="qty" placeholder="Quantity of soda" />
+                </label>
+                <label>
+                    PRICE:<input type="text" name="price" placeholder="Price of soda" />
+                </label>
+                <label>
+                    DESCRIPTION:<input type="text" name="description" />
+                </label>
+            </fieldset>
+            <input type="submit" value="Create New Soda" />
+        </form>
     </article>
 </div>
 {% endblock %}

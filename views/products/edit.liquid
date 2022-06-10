@@ -1,0 +1,24 @@
+{% layout 'layout.liquid' %} {% block content %}
+<div class="container">
+    <article>
+        <form action="/products/{{product._id}}?_method=PUT" method="POST">
+            <fieldset>
+                <legend>Create a New Soda</legend>
+                <label>
+                    NAME:<input type="text" name="name" placeholder="Name of soda" value="{{product.name}}"/>
+                </label>
+                <label>
+                    QUANTITY:<input type="text" name="qty" placeholder="Quantity of soda" value="{{product.qty}}"/>
+                </label>
+                <label>
+                    PRICE:<input type="text" name="price" placeholder="Price of soda" value="{{product.price}}"/>
+                </label>
+                <label>
+                    DESCRIPTION:<input type="text" name="description" value='{{product.description}}'/>
+                </label>
+            </fieldset>
+            <input type="submit" value=`Edit the {{product.name}}`/>
+        </form>
+    </article>
+</div>
+{% endblock %}

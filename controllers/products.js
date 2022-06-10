@@ -34,13 +34,15 @@ router.delete('/:id', (req, res) => {
 router.put('/:id', (req, res) => {
     const id = req.params.id
     Product.findByIdAndUpdate(id, req.body, {new: true})
-    .then(product => res.redirect(`/products/:${id}`))
+    .then(product => res.redirect(`/products/${id}`))
     .catch(error => console.log(error))
 })
 
 // create route
 router.post('/', (req, res) => {
-    Product.create(req.body)
+    const product = req.body
+    product.img = 'https://media.istockphoto.com/photos/regular-unbranded-aluminum-can-picture-id1148130926?k=20&m=1148130926&s=612x612&w=0&h=aboZVx_8Yvj92mgfYen4uxUt6s-B4kH31zULVRc_uGs='
+    Product.create(product)
     .then(product => {
         res.redirect('/products')
     })
