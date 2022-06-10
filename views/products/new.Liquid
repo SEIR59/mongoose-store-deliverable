@@ -1,0 +1,23 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+  <form action="/fruits" method="post">
+    <fieldset>
+      <legend>Add a New Product</legend>
+      <label>
+        NAME:<input type="text" name="name" placeholder="product name" />
+      </label>
+      <label>
+        DESCRIPTION:<input
+          type="text"
+          name="description"
+          placeholder="product description"
+        />
+      </label>
+      <label> IMG URL:<input type="text" name="img" /> </label>
+      <label> PRICE:<input type="text" name="price" /> </label>
+      <label> QTY:<input type="text" name="qty" /> </label>
+    </fieldset>
+    <input type="submit" value="create new fruit" />
+  </form>
+</div>
+{% endblock %}
