@@ -1,7 +1,7 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <div class="container-sm">
-    <form action="/products/{{ product.id }}?_method=PUT" method="POST">
+    <form action="/products/{{ product.name }}?_method=PUT" method="POST">
         <fieldset>
             <legend>Edit New Product</legend>
             <label class="form-label">Name:</label>
@@ -12,22 +12,21 @@
                 class="form-control"
                 value="{{ product.name }}"
             >
-            <label class="form-label">Color:</label>
+            <label class="form-label">Description:</label>
             <input 
                 type="text" 
-                name="color" 
-                placeholder="enter product color"
+                name="description" 
+                placeholder=""
                 class="form-control"
-                value="{{ product.color }}"
+                value="{{ product.description }}"
             >
-            <label class="form-label">Ready To Eat: </label>
+            <label class="form-label">Image Url: </label>
             <input 
                 type="checkbox" 
-                name="readyToEat"
-                class="form-check-input"
-                {% if product.readyToEat %}
-                    checked
-                {% endif %}
+                name="img"
+                placeholder=""
+                class="form-control"
+                value="{{ product.img }}"
             >
         </fieldset>
         <input type="submit" class="btn btn-success" value="Edit {{ product.name }}">
