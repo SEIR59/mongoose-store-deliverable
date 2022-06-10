@@ -103,7 +103,7 @@ router.get('/:id/edit', (req, res) => {
 	Product.findById(productId)
 		// -->render if there is a product
 		.then((product) => {
-			console.log('edit froot', product)
+			console.log('edit product', product)
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
 			res.render('products/edit', { product, username, loggedIn })

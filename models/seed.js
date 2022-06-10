@@ -3,6 +3,7 @@
 ///////////////////////////////////////
 const mongoose = require('./connection')
 const Product = require('./product')
+const theAdmin = require('./user')
 
 ///////////////////////////////////////////
 // Seed Code
@@ -33,7 +34,10 @@ db.on('open', () => {
 		  qty: 1
 		}
 	  ]
-
+	  const startAdmins = [
+		  {username: 'Admin',
+			password: 'Admin'
+	  }]
 	// when we seed data, there are a few steps involved
 	// delete all the data that already exists(will only happen if data exists)
 	Product.remove({})
@@ -41,6 +45,25 @@ db.on('open', () => {
 		    console.log('this is what remove returns', deletedProducts)
 		    // then we create with our seed data
             Product.create(startProducts)
+                .then((data) => {
+                    console.log('Here are the new seed products', data)
+                    db.close()
+                })
+                .catch(error => {
+                    console.log(error)
+                    db.close()
+                })
+	    })
+        .catch(error => {
+            console.log(error)
+            db.close()
+        })
+
+	theAdmin.remove({})
+        .then(deletedAdmins => {
+		    console.log('this is what remove returns', deletedAdmins)
+		    // then we create with our seed data
+            theAdmin.create(startAdmins)
                 .then((data) => {
                     console.log('Here are the new seed products', data)
                     db.close()
