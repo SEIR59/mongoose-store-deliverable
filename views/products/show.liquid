@@ -4,7 +4,7 @@
     <article>
         <h1> {{ product.name }} </h1>
         {% if product.qty > 0 %}
-        <form action="/products/{{product._id}}?_method=PUT" method="POST">
+        <form action="/products/{{product._id}}/buy?_method=PUT" method="POST">
             <input type="submit" value="Buy a {{product.name}}">
         </form>
         {% else %}

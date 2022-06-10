@@ -39,7 +39,7 @@ router.put('/:id', (req, res) => {
 })
 
 //update route / buy route
-router.put('/products/:id', (req,res) => {
+router.put('/:id/buy', (req,res) => {
     Product.updateOne({_id: req.params.id}, {$inc: {qty: -1}})
     .then(product => res.redirect(`/products/${req.params.id}`))
     .catch(error => console.log(error))
