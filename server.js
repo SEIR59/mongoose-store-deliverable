@@ -94,6 +94,8 @@ app.get("/products/new", (req, res) => {
     res.render("products/new.liquid");
   });
 
+
+  //Delete route
   app.delete("/products/:id", (req, res) => {
     // get the id from params
     const id = req.params.id;
