@@ -115,11 +115,11 @@ router.put('/:id/buy', (req, res) => {
   const id = req.params.id
   Product.findById(id)
   .then((product) => {
-    console.log(product)
+    // console.log(product)
     product.qty = (product.qty -1)
     Product.findByIdAndUpdate(product.id, product, {new: true})
     .then((product) => {
-      console.log(product)
+      // console.log(product)
       res.redirect(`/products/${product.id}`)
     })
     .catch((error) => {
