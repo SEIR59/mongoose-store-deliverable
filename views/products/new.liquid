@@ -1,0 +1,25 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+  <form action="/products" method="post">
+    <fieldset>
+      <legend>Create a New Product</legend>
+      <label>
+        NAME:<input class="form-control form-control-lg" type="text" name="name" placeholder="enter product name" />
+      </label>
+      <label>
+        DESCRIPTION:<input class="form-control form-control-lg" type="text" name="description" placeholder="enter product description" />
+      </label>
+      <label>
+        IMG:<input class="form-control form-control-lg" type="url" name="img" placeholder="enter product image url" />
+      </label>
+      <label>
+        PRICE:<input class="form-control form-control-lg" type="number" name="price" placeholder="enter product cost" />
+      </label>
+      <label>
+        QUANTITY:<input class="form-control form-control-lg" type="number" name="qty" placeholder="enter product quantity" />
+      </label>
+    </fieldset>
+    <input class="btn btn-danger" type="submit" value="create new product" />
+  </form>
+</div>
+{% endblock %}
