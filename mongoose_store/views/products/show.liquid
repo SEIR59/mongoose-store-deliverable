@@ -1,0 +1,37 @@
+{% layout 'layout.liquid' %}
+<!-- {% block title %}
+{% endblock %} -->
+{% block header %}
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    <!-- <form action="/products/{{product.id}}/edit" method="GET">
+    </form> -->
+    <!-- <form action="/{{product.id}}?_method=DELETE" method="POST">
+    </form> -->
+    <div class="item-show">
+            <form action="/products" method="GET">
+                <input type="submit" value="Back to Index">
+                <input type="submit" value="Edit Item" formaction="/products/{{product.id}}/edit" formmethod="GET">
+            </form>
+            <h1>{{ product.name }}</h1>
+            <img src="{{product.img}}" alt="">
+            <p class="description">{{product.description}}</p>
+            <p>${{product.price}}</p>
+            {% if product.qtyAvailable > 0 %}
+            <p>{{ product.qtyAvailable }} Remaining.</p>
+            <form action="/products/{{ product.id }}/buy?_method=PUT" method="POST">
+                <input class="buy-btn form-btn"type="submit" value="Buy">
+            </form>
+            {% else %}
+            <!-- Display out of stock message -->
+            <p>Out Of stock</p>
+            {% endif %}
+            
+        </div>
+</div>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}

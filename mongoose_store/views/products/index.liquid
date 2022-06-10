@@ -1,0 +1,28 @@
+{% layout 'layout.liquid' %}
+<!-- {% block title %}
+{% endblock %} -->
+{% block header %}
+
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Cheese Store</h1>
+    <form action="/products/new" method="GET">
+        <input type="submit" value="Add Product">
+    </form>
+    <div class="product-showAll">
+        {% for product in products %}
+        <div class="item">
+            <a href="/products/{{ product.id}}">
+                <h3>{{product.name}}</h3>
+                <img src="{{product.img}}" alt="">
+            </a>
+            <p>{{product.description}}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+
+{% endblock %}
