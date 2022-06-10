@@ -26,6 +26,41 @@ router.get("/", (req, res) => {
     })
 })
 
+// new route
+router.get('/new', (req, res) => {
+  const id = req.params.id
+  Product.findById(id)
+    .then((product) => {
+      res.render('products/new', {
+        product
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+      res.json({ error })
+    })
+})
+
+// create route
+router.post('/', (req, res) => {
+  Product.create({
+    name: req.body.name,
+    description: req.body.description,
+    img: req.body.img,
+    price: req.body.price,
+    qty: req.body.qty,
+
+  }, (error, product) => {
+    if (error) {
+      console.log(error)
+    }
+    else {
+      res.redirect('/products')
+    }
+  })
+  console.log(req.body.name)
+})
+
 // show route
 router.get('/:id', (req, res) => {
   const id = req.params.id
@@ -75,20 +110,22 @@ router.get('/:id/edit', (req, res) => {
 //     })
 // })
 
+
+
 // update route
 router.put('/:id', (req, res) => {
   const id = req.params.id
   console.log(req.body.name)
 
   Product.findByIdAndUpdate(id, {
-     name: req.body.name,
-     description: req.body.description,
-     img: req.body.img,
-     price: req.body.price,
-     qty: req.body.qty,
-      
+    name: req.body.name,
+    description: req.body.description,
+    img: req.body.img,
+    price: req.body.price,
+    qty: req.body.qty,
+
   }, (error, product) => {
-    if(error) {
+    if (error) {
       console.log(error)
     }
     else {
@@ -107,4 +144,4 @@ router.put('/:id', (req, res) => {
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////
-module.exports = router;
+module.exports = router

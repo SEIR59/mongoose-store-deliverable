@@ -1,0 +1,14 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+    <h2>Add New Product</h2>
+    <form action="/products" method="POST">
+        <input type="text" name="name" placeholder="Name"><br>
+        <input type="text" name="description" placeholder="Description"><br>
+        <input type="text" name="img" placeholder="Image link"><br>
+        <input type="text" name="price" placeholder="Price"><br>
+        <input type="text" name="qty" placeholder="Quantity in stock"><br><br>
+        <input type="submit" value="Submit Changes">
+    </form>
+
+</div>
+{% endblock %}

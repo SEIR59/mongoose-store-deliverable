@@ -4,9 +4,13 @@
         <button>Add New Product</button><br>
     </a>
     {% for product in products %}
-    <a href="/products/{{ product._id }}">
-        <img src="{{ product.img }}" alt="{{ product.name }}">
-    </a>
+    <!-- <section> -->
+        <!-- {{ product.name }}<br> -->
+        <a href="/products/{{ product._id }}">
+            <img src="{{ product.img }}" alt="{{ product.name }}">
+        </a>
+        <!-- Price: ${{ product. price }}<br> -->
+    <!-- </section> -->
     {% endfor %}
 </div>
 {% endblock %}
