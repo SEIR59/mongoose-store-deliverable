@@ -1,7 +1,7 @@
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
-const mongoose = require("mongoose")
+const mongoose = require("./connection")
 const Schema = mongoose.Schema
 const model = mongoose.model
 
@@ -33,6 +33,7 @@ const productsSchema = new Schema(
 )
 
 const Product = model("Product", productsSchema)
+
 module.exports = Product
 
 
