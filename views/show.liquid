@@ -3,13 +3,13 @@
     <article>
         <h2> {{ product.name }} </h2>
         <h3>{{ product.color }}</h3>
-        <img src="{{products.img}}">
+        <img src="{{ products.img }}">
         <br>
         <h4>
             {{ products.price }}
         </h4>
         <h5>
-            {{products.qty}}
+            {{ products.qty }}
           </h5>
         <a href="/products/{{ product._id }}/edit"><button>Edit</button></a>
         <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
