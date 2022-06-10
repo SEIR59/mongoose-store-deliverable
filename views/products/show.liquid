@@ -11,13 +11,15 @@
     <a href="/products/{{ product._id }}/edit">
         <button>Edit Product</button>
     </a>
-    <a href="/products/{{ product._id }}/delete">
-        <button>Delete Product</button>
-    </a><br>
+    <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
+            <button>Delete Product</button>
+        <br>
+    </form>
     <p>Left in stock: {{ product.qty }}</p><br>
-    <form action="/products/{{ product._id }}?_method=PUT" method="POST"></form>
+    <form action="/products/{{ product._id }}?_method=PUT" method="POST">
         <button>Buy It!</button>
-    </a>
+        </a>
+    </form>
 
 </div>
 {% endblock %}

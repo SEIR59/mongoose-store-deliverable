@@ -129,16 +129,24 @@ router.put('/:id', (req, res) => {
       console.log(error)
     }
     else {
-      res.redirect('/products/')
+      res.redirect(`/products/${id}`)
     }
   })
+})
 
-  // Product.name = req.body.name
-  // Product.description = req.body.description
-  // Product.img = req.body.img
-  // Product.price = req.body.price
-  // Product.qty = req.body.qty
-  // res.redirect(`/products/${id}`)
+// delete route
+router.delete('/:id', (req, res) => {
+  const id = req.params.id
+  console.log(req.body.name)
+
+  Product.findByIdAndRemove(id, (error, product) => {
+    if (error) {
+      console.log(error)
+    }
+    else {
+      res.redirect('/products')
+    }
+  })
 })
 
 //////////////////////////////////////////
