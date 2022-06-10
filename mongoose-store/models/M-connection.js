@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const DATABASE_URL = 'mongosh://127.0.0.1/mongoose-store'
+const DATABASE_URL = 'mongodb://127.0.0.1/mongoose-store'
 const CONFIG = {
     useNewUrlParser: true,
     useUnifiedTopology: true
