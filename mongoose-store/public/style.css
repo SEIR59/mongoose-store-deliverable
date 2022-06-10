@@ -1,0 +1,13 @@
+body{
+
+}
+nav{
+    display:flex;
+    justify-content: space-evenly;
+}
+header{
+background-color: cornflowerblue;
+}
+footer{
+background-color: cornflowerblue;
+}

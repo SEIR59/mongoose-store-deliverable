@@ -8,7 +8,7 @@ const Product = require('./models/M-products')
 
 app.use(methodOverride("_method")) //override method for put and delete
 app.use(express.urlencoded({ extended: true })) //for req.body contents to be passed on
-app.use(express.static("/public")) //serves up static files, like .js or .css from a folder named public
+app.use(express.static("public")) //serves up static files, like .js or .css from a folder named public
 
 //routing protocols
 app.use('/store', storeRouter)
