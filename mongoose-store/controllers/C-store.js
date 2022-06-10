@@ -4,6 +4,8 @@ const router = express.Router()
 
 console.log('in store controller')
 
+//get routes
+
 router.get('/' , (req,res)=>{
     res.render('items/index', {
 
@@ -28,7 +30,19 @@ router.get('/:id/edit', (req,res)=>{
     })
 })
 
-router.delete('/' , (req,res)=>{
+//others
+
+router.post('/:id' , (req,res)=>{
+    //logic
+    res.redirect('/:id')
+})
+
+router.delete('/:id' , (req,res)=>{
+    res.redirect('/')
+})
+
+router.post('/' , (req,res)=>{
+    //logic
     res.redirect('/')
 })
 module.exports = router
