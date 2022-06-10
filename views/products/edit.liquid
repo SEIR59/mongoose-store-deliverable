@@ -5,46 +5,51 @@
       <legend>Edit {{ product.name }}</legend>
       <label>
         NAME:<input
+        class="form-control form-control-lg"
           type="text"
           name="name"
           placeholder="enter product name"
           value="{{ product.name }}"
         />
-      </label>
+      </label> <br>
       <label>
         DESCRIPTION:<input
+        class="form-control form-control-lg"
           type="text"
           name="description"
           placeholder="enter product description"
           value="{{ product.description }}"
         />
-      </label>
+      </label> <br>
       <label>
         IMG:<input
+        class="form-control form-control-lg"
           type="url"
           name="img"
           placeholder="enter product image url"
           value="{{ product.img }}"
         />
-      </label>
+      </label> <br>
       <label>
         PRICE:<input
+        class="form-control form-control-lg"
           type="number"
           name="price"
           placeholder="enter product cost"
           value="{{ product.price }}"
         />
-      </label>
+      </label> <br>
       <label>
         QUANTITY:<input
+        class="form-control form-control-lg"
           type="number"
           name="qty"
           placeholder="enter product quantity"
           value="{{ product.qty }}"
         />
-      </label>
+      </label> <br>
     </fieldset>
-    <input type="submit" value="Edit {{ product.name }}" />
+    <input type="submit" class="btn btn-danger" value="Edit {{ product.name }}" />
   </form>
 </div>
 {% endblock %}

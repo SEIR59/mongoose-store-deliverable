@@ -1,18 +1,36 @@
 {% layout "layout.liquid" %} {% block content %}
 <div>
-    <a href="/products/new"><button>Create A New Product</button></a>
+  <a href="/products/new"><button type="button" class="btn btn-danger">Add A New Product</button></a>
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in products %}
+    <div class="col">
+      <div class="card">
+        <a href="/products/{{ product._id }}">
+        <img src="{{ product.img }}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}} </a>${{product.price}}</h5>
+        
+          <p class="card-text">{{product.description}}</p>
+        </div>
+      
+      </div>
+    </div>
+    {% endfor %}
+  </div>
   {% for product in products %}
-  <article>
+  <!-- <article>
     <a href="/products/{{ product._id }}">
       <h2>
-        {{product.name}}
+        {{ product.name }}
       </h2>
       <h2>
-        <img src="{{ product.img }}">
+        <img src="{{ product.img }}" />
       </h2>
     </a>
-  </article>
-  {% endfor %}
+  </article> -->
+    
+
+  <!-- {% endfor %} -->
   <!-- <a href="/user/logout"><button>Logout</button></a> -->
 </div>
 {% endblock %}

@@ -101,7 +101,7 @@ router.put("/:id", (req, res) => {
   Product.findByIdAndUpdate(id, req.body, { new: true })
     .then((product) => {
       // redirect to main page after updating
-      res.redirect("/products");
+      res.redirect(`/products/${id}`);
     })
     // send error as json
     .catch((error) => {
@@ -109,6 +109,29 @@ router.put("/:id", (req, res) => {
       res.json({ error });
     });
 });
+
+// Put method for buy route
+router.put('/:id/buy', (req, res) => {
+  const id = req.params.id
+  Product.findById(id)
+  .then((product) => {
+    console.log(product)
+    product.qty = (product.qty -1)
+    Product.findByIdAndUpdate(product.id, product, {new: true})
+    .then((product) => {
+      console.log(product)
+      res.redirect(`/products/${product.id}`)
+    })
+    .catch((error) => {
+      console.log(error)
+      res.json(error)
+    })
+  })
+  .catch((error) => {
+    console.log(error)
+    res.json(error)
+  })
+})
 
 // delete route
 router.delete('/:id', (req, res) => {
