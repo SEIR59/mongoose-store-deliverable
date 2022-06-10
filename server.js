@@ -7,7 +7,7 @@ const morgan = require("morgan"); //import morgan
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const path = require("path")
-const Product = require('./models/products');
+const Product = require('./models/product');
 const newProducts = require('./models/seed');
 
 
@@ -56,13 +56,122 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`));
 
-//Seed
+//////////////////////////////////////////////
+// Seed
+//////////////////////////////////////////////
 app.get('/seed', async (req, res) => {
  
   try {
     const seedItems = await Product.create(newProducts)
     res.send(seedItems)
+    console.log(seedItems)
   } catch (err) {
     res.send(err.message)
   }
 })
+
+
+//////////////////////////////////////////////
+// Index Route
+//////////////////////////////////////////////
+app.get("/products", (req, res) => {
+  
+  Product.find({})
+    
+    .then((products) => {
+      res.render("index", { products });
+    })
+    
+    .catch((error) => {
+      res.json({ error });
+    });
+});
+
+//////////////////////////////////////////////
+// New Route
+//////////////////////////////////////////////
+app.get("/products/new", (req, res) => {
+  res.render("new");
+});
+
+
+// create route
+app.post("/products", (req, res) => {
+  
+  // create the new fruit
+  Product.create(req.body)
+    .then((products) => {
+      // redirect user to index page if successfully created item
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+//////////////////////////////////////////////
+// Edit Route
+//////////////////////////////////////////////
+
+app.get("/products/:id/edit", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // get the product from the database
+  Product.findById(id)
+    .then((product) => {
+      // render edit page and send product data
+      res.render("edit", { product });
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+//update route
+app.put("/products/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+ 
+  // update the product
+  Product.findByIdAndUpdate(id, req.body,{ new:true })
+    .then((product) => {
+      // redirect to main page after updating
+      res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+
+
+
+
+
+//////////////////////////////////////////////
+// Show Route
+//////////////////////////////////////////////
+app.get("/products/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+
+  // find the particular fruit from the database
+  Product.findById(id)
+    .then((product) => {
+      // render the template with the data from the database
+      res.render("show", { product });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+
+

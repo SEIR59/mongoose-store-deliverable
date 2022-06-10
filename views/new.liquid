@@ -1,0 +1,26 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+  <form action="/products" method="post">
+    <fieldset>
+      <legend>Create a New Product</legend>
+      <label>
+        Name:<input type="text" name="name" placeholder="enter name" />
+      </label>
+      <label>
+        Description:<input type="text" name="description" placeholder="enter description" />
+      </label>
+      <label>
+        Image:<input type="string" name="Image" placeholder="enter Image src" />
+      </label>
+      <label>
+        price:<input type="number" name="number" placeholder="enter price" />
+      </label>
+      <label>
+        qty:<input type="number" name="qty" placeholder="enter qty" />
+      </label>
+      
+    </fieldset>
+    <input type="submit" value="create new product" />
+  </form>
+</div>
+{% endblock %}
