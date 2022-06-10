@@ -43,8 +43,11 @@ app.get('/seed', async (req, res) => {
       ]
   
     try {
-      const seedItems = await Product.create(newProducts)
-      res.send(seedItems)
+      Product.deleteMany().then(async ()=>{
+        const seedItems = await Product.create(newProducts)
+      res.redirect('/store')
+      })
+      
     } catch (err) {
       res.send(err.message)
     }

@@ -1,9 +1,19 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<h1>New</h1>
-<a href="/store">Store</a>
-<form action="">
-    <h1>form to edit</h1>
+<a href="/store"><button>Return to Store</button></a>
+<form action="/store" method = "POST">
+    <h1>Item Information</h1>
+    Name:
+    <input type="text" name="name" id="" placeholder="Name" required>
+    Description:
+    <input type="text" name="description" id="" placeholder="Description">
+    Image URL:
+    <input type="text" name="img" id="" placeholder="Image URL">
+    Price:
+    <input type="text" name="price" id="" placeholder="$" required>
+    How many in stock?
+    <input type="number" name="qty" id="" placeholder="Number" required>
+    <input type="submit" value="Create this Item!">
 
 </form>
 

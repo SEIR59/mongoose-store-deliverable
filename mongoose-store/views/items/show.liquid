@@ -1,10 +1,29 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<h1>Show</h1>
-<a href="/store">Store</a>
-<a href="/store/id/edit">Edit</a>
-<a href="/store">Delete</a>
+<nav>
+    <a href="/store"><button>Back to Store</button></a>
+    <a href="/store/{{item._id}}/edit"><button>Edit this Item</button></a>
+    <form action="/store/{{item._id}}/?_method=DELETE" method="POST"><input type="Submit" value="Delete this Item"></form>
+</nav>
 
-<h1>items left/outofstock</h1>
-<button>Buy Now - reduce items left - hide if items left = 0, redirect to same page?</button>
+{% if item.qty == 0 %}
+
+<div style="opacity:.5;">
+    <h2>{{item.name}}</h2>
+    <img src="{{item.img}}" alt="">
+    <h3>Price: {{item.price}}</h3>
+    <h3>OUT OF STOCK.</h3>
+</div>
+
+{% else %}
+<div>
+    <h2>{{item.name}}</h2>
+    <img src="{{item.img}}" alt="">
+    <h3>Price: {{item.price}}</h3>
+    <h3>Quantity: {{item.qty}}</h3>
+    <form action="/store/{{item._id}}" method="POST">
+        <input type="submit" value="Buy Now!">
+    </form>
+</div>
+{% endif%}
 {% endblock %}

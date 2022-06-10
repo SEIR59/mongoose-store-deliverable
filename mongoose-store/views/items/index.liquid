@@ -1,17 +1,16 @@
 {% layout 'layout.liquid' %}
 {% block content %}
 <nav>
-    <a href="/store/show">show</a>
-    <a href="/new">Add New Product</a>
+    <a href="/store/new"><button>Add New Product</button></a>
 </nav>
 
 <div class="container-grid">
 
     {% for item in products %}
-
+    <a href="/store/{{item._id}}">
     {% if item.qty > 0 %}
-
-    <div class="container-item">
+    
+    <div class="container-item" style="border:black 1px solid">
         {% else %}
         <div class="container-item" style="opacity:.25;">
         {% endif%}
@@ -19,8 +18,7 @@
         <img src="{{item.img}}" alt="">
         <h4>Price: {{item.price}}</h4>
     </div>
-
-    
+</a>
     {% endfor %}
 </div>
 
