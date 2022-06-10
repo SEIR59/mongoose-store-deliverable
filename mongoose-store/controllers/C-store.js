@@ -1,14 +1,15 @@
 const express = require('express')
-const Product = require('../models/M-products')
 const router = express.Router()
-
+const Products = require('../models/M-products')
 console.log('in store controller')
 
 //get routes
 
-router.get('/' , (req,res)=>{
-    res.render('items/index', {
-
+router.get('/' , async (req,res)=>{
+    Products.find().then((products)=>{
+        res.render('items/index', {
+            products : products
+    })
     })
 })
 

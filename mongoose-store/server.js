@@ -3,7 +3,7 @@ const express = require('express')
 const app = require('liquid-express-views')(express())
 const storeRouter = require('./controllers/C-store')
 const methodOverride = require('method-override')
-
+const Product = require('./models/M-products')
 //middleware
 
 app.use(methodOverride("_method")) //override method for put and delete
@@ -13,6 +13,7 @@ app.use(express.static("/public")) //serves up static files, like .js or .css fr
 //routing protocols
 app.use('/store', storeRouter)
 
+//general routes
 app.get('/', (req,res)=>{
     res.send('hi')
 })
@@ -48,7 +49,6 @@ app.get('/seed', async (req, res) => {
       res.send(err.message)
     }
   })
-
 
 //server
 app.listen(4000,()=>{
