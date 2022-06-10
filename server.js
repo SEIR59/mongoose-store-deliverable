@@ -91,42 +91,75 @@ app.get("/seed", (req, res) => {
 
 // index route
 app.get("/products", (req, res) => {
-    Product.find({})
-      // render a template after they are found
-      .then((products) => {
-        res.render("products/index.liquid", { products });
-      })
-      // send error as json if they aren't
-      .catch((error) => {
-        res.json({ error });
-      });
-  });
+  Product.find({})
+    // render a template after they are found
+    .then((products) => {
+      res.render("products/index.liquid", { products });
+    })
+    // send error as json if they aren't
+    .catch((error) => {
+      res.json({ error });
+    });
+});
 
-  // new route
+// new route
 app.get("/products/new", (req, res) => {
-    res.render("products/new.liquid");
-  });
+  res.render("products/new.liquid");
+});
 
-  // show route
+// edit route
+app.get("/products/:id/edit", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // get the fruit from the database
+  Product.findById(id)
+    .then((product) => {
+      // render edit page and send fruit data
+      res.render("products/edit.liquid", { product });
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+// show route
 app.get("/products/:id", (req, res) => {
-    const id = req.params.id;
-    Product.findById(id)
-      .then((product) => {
-        // render the template with the data from the database
-        res.render("products/show.liquid", { product });
-      })
-      .catch((error) => {
-        console.log(error);
-        res.json({ error });
-      });
-  });
+  const id = req.params.id;
+  Product.findById(id)
+    .then((product) => {
+      // render the template with the data from the database
+      res.render("products/show.liquid", { product });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
 
-  // create route
+// create route
 app.post("/products", (req, res) => {
-    Product.create(req.body)
-      .then((products) => {
+  Product.create(req.body)
+    .then((products) => {
+      res.redirect("/products");
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+//update route
+app.put("/products/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    Product.findByIdAndUpdate(id, req.body, { new: true })
+      .then((product) => {
+        // redirect to main page after updating
         res.redirect("/products");
       })
+      // send error as json
       .catch((error) => {
         console.log(error);
         res.json({ error });
