@@ -121,5 +121,17 @@ app.get("/products/:id", (req, res) => {
       });
   });
 
+  // create route
+app.post("/products", (req, res) => {
+    Product.create(req.body)
+      .then((products) => {
+        res.redirect("/products");
+      })
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`));
