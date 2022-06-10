@@ -4,7 +4,20 @@
         <button>Back To Home</button><br>
     </a>
 
-    <img src="{{ product.img }}" alt="{{ product.name }}">
-    
+    <p>Price: ${{ product.price }}</p>
+
+    <img src="{{ product.img }}" alt="{{ product.name }}"><br>
+
+    <a href="/products/{{ product._id }}/edit">
+        <button>Edit Product</button>
+    </a>
+    <a href="/products/{{ product._id }}/delete">
+        <button>Delete Product</button>
+    </a><br>
+    <p>Left in stock: {{ product.qty }}</p><br>
+    <form action="/products/{{ product._id }}?_method=PUT" method="POST"></form>
+        <button>Buy It!</button>
+    </a>
+
 </div>
 {% endblock %}

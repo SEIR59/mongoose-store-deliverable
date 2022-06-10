@@ -12,6 +12,7 @@ const router = express.Router();
 /////////////////////////////////////////
 // Routes
 /////////////////////////////////////////
+// index route
 router.get("/", (req, res) => {
   Product.find({})
     .then((products) => {
@@ -25,7 +26,8 @@ router.get("/", (req, res) => {
     })
 })
 
-router.use('/:id', (req, res) => {
+// show route
+router.get('/:id', (req, res) => {
   const id = req.params.id
   Product.findById(id)
     .then((product) => {
@@ -37,6 +39,69 @@ router.use('/:id', (req, res) => {
       console.log(error)
       res.json({ error })
     })
+})
+
+// edit route
+router.get('/:id/edit', (req, res) => {
+  const id = req.params.id
+  Product.findById(id)
+    .then((product) => {
+      res.render('products/edit', {
+        product
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+      res.json({ error })
+    })
+})
+
+// // buy route
+// router.put('/:id', (req, res) => {
+//   const id = req.params.id
+//   console.log('SUCCESSFULLY RAN BUY ROUTE START')
+//   Product.findByIdAndUpdate(id, { $dec: { qty: -1 }} )
+//     .then((product) => {
+//       // product.update(
+
+//       // )
+//       res.redirect('products/show', {
+//         product
+//       })
+//     })
+//     .catch((error) => {
+//       console.log(error)
+//       res.json({ error })
+//     })
+// })
+
+// update route
+router.put('/:id', (req, res) => {
+  const id = req.params.id
+  console.log(req.body.name)
+
+  Product.findByIdAndUpdate(id, {
+     name: req.body.name,
+     description: req.body.description,
+     img: req.body.img,
+     price: req.body.price,
+     qty: req.body.qty,
+      
+  }, (error, product) => {
+    if(error) {
+      console.log(error)
+    }
+    else {
+      res.redirect('/products/')
+    }
+  })
+
+  // Product.name = req.body.name
+  // Product.description = req.body.description
+  // Product.img = req.body.img
+  // Product.price = req.body.price
+  // Product.qty = req.body.qty
+  // res.redirect(`/products/${id}`)
 })
 
 //////////////////////////////////////////
