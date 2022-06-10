@@ -1,26 +1,26 @@
 {% layout "layout.liquid" %} {% block content %}
 <article>
-    <h2>{{ Product.name }}</h2>
-    <img src={{Product.img}}>
-    <h3>Product.price</h3>
-    <h3>{{ Product.description }}</h3>
-    {% if Product.qty == 0 %}
+    <h2>{{ product.name }}</h2>
+    <img src={{product.img}}>
+    <h3>{{product.price}}</h3>
+    <h3>{{ product.description }}</h3>
+    {% if product.qty == 0 %}
 
         <div>OUT OF STOCK</div>
 
     {% else %}
-        <div>{{Product.qty}} remaining</div>
-    <form action="/product/{{product.id}}/buy?_method=PUT" method="POST">
+        <div>{{product.qty}} remaining</div>
+    <form action="/products/{{product.id}}/buy?_method=PUT" method="POST">
         <input type="submit" value="Buy">
     </form>
     {% endif %}
 
 
-    <a href="/product/{{ product.id }}/edit"><button>Edit this product</button></a>
-    <form action="/product/{{ product.id }}?_method=DELETE" method="POST">
+    <a href="/products/{{ product.id }}/edit"><button>Edit this product</button></a>
+    <form action="/products/{{ product.id }}?_method=DELETE" method="POST">
         <input type="submit" value="Delete Product" />
     </form>
-    <a href="/product/"><button>Back to Main</button></a>
+    <a href="/products/"><button>Back to Main</button></a>
 </article>
 </div>
 

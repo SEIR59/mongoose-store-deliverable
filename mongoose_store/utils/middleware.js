@@ -1,6 +1,8 @@
 const express = require('express')
 const morgan = require('morgan')
 const methodOverride = require('method-override')
+const ProductRouter = require('../controllers/product')
+
 
 const middleware = (app) => {
   app.use(morgan("tiny")); //logging
