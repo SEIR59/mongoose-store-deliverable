@@ -1,6 +1,3 @@
-// const rowdy = require('rowdy-logger')
-// const routesReport = rowdy.begin(app)
-
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
@@ -11,6 +8,8 @@ const methodOverride = require("method-override");
 const path = require("path");
 const ProductRouter = require('./controllers/products')
 
+// const rowdy = require('rowdy-logger')
+// const routesReport = rowdy.begin(ProductRouter)
 /////////////////////////////////////////////////
 // Create our Express Application Object Bind Liquid Templating Engine
 /////////////////////////////////////////////////
@@ -43,5 +42,5 @@ app.get("/", (req, res) => {
 const port = process.env.PORT
 app.listen(port, () => {
     console.log(`port 3000 listens`)
-    // routesReport.print(app)
+    // routesReport.print(ProductRouter)
 })
