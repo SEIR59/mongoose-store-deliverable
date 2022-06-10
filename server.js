@@ -1,10 +1,11 @@
 /////////////////////////////////////////////
 // Import Our Dependencies
 /////////////////////////////////////////////
-require("dotenv").config() // Load ENV Variables
-const express = require("express") // import express
-const morgan = require("morgan") //import morgan
-const methodOverride = require("method-override")
+require("dotenv").config(); // Load ENV Variables
+const express = require("express");
+const morgan = require("morgan");
+const methodOverride = require("method-override");
+const mongoose = require("mongoose");
 const path = require("path")
 const ProductRouter = require('./controllers/products')
 
@@ -28,6 +29,10 @@ app.use('/products', ProductRouter) // send all "/users" routes to user router
 app.get("/", (req, res) => {
   res.send('Server is up')
 });
+
+
+
+
 
 //////////////////////////////////////////////
 // Server Listener
