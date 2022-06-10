@@ -13,7 +13,17 @@ const router = express.Router();
 // Routes
 /////////////////////////////////////////
 router.use("/", (req, res) => {
-  res.render('products/index')
+  Product.find({})
+    .then((products) => {
+      res.render('products/index', {
+        products
+      })
+    })
+    .catch((error) => {
+      console.log(error)
+      res.json({ error })
+    })
+
 })
 
 

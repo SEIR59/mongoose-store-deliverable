@@ -1,6 +1,9 @@
 {% layout "layout.liquid" %} {% block content %}
 <div>
     <h3>Hi.</h3>
-  
+
+    {% for product in products %}
+    <img src="{{ product.img }}" alt="{{ product.name }}">
+    {% endfor %}
 </div>
 {% endblock %}
