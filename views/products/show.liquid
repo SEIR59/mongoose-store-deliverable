@@ -8,8 +8,13 @@
           Price $ {{product.price}} <br>
           Items Remaining: {{product.qty}}</h3>
             <div class="three-buttons">     
-        <a href="/products/{{ product._id }}/edit"><button>Buy</button></a>
           <a href="/products/{{ product._id }}/edit"><button>Edit</button></a>
+          {% if product.qty == 0%}
+            <h3>OUT OF STOCK</h3>
+            {%else%}
+            <form action="/products/{{ product._id }}/buy?_method=PUT" method="POST">
+                <input type="submit" value="Buy" />
+                {%endif%}
           <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
             <input type="submit" value="Delete" />
         </div>
