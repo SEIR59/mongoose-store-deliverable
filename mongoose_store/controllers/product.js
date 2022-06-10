@@ -34,7 +34,7 @@ router.put("/:id/buy", (req, res) => {
     const id = req.params.id
     Product.findByIdAndUpdate(id, { $inc: { qty: -1 } })
         .then(products => {
-            res.redirect('/products/:id')
+            res.redirect(`/products/${id}`)
         })
         .catch(error => res.json(error))
 })
@@ -43,7 +43,7 @@ router.get('/:id/edit', (req, res) => {
     const id = req.params.id
     Product.findById(id)
         .then((product) => {
-            res.render('/products/edit', {product})
+            res.render('products/edit.liquid', {product})
         })
         .catch((error) => {
             console.log(error)
@@ -65,7 +65,7 @@ router.put("/:id", (req, res) => {
 
 router.delete("/:id", (req, res) => {
     const id = req.params.id
-    Product.findOneAndUpdate(id)
+    Product.findByIdAndRemove(id)
         .then((product) => {
             console.log(product)
             res.redirect("/products")

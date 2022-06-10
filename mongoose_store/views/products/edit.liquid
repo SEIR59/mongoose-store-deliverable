@@ -1,5 +1,5 @@
 {% layout "layout.liquid" %} {% block content %}
-<form action="/products/{{product.id}}//?_method=PUT" method="POST">
+<form action="/products/{{product.id}}/?_method=PUT" method="POST">
     <input type="text" name="name" placeholder="Enter Product Name" value="{{product.name}}">
     <input type="text" name="img" placeholder="Product Image Link" value={{product.img}}>
     <input type="text" name="description" placeholder="Enter Product Description" value="{{product.descriptiom}}">
