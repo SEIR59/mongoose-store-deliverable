@@ -1,14 +1,14 @@
 {% layout "layout.liquid" %} {% block content %}
 <div>
-  <form action="/products/{{ products._id }}?_method=PUT" method="post">
+  <form action="/products/{{ product._id }}?_method=PUT" method="POST">
     <fieldset>
-      <legend>Edit {{ products.name }}</legend>
+      <legend>Edit {{ product.name }}</legend>
       <label>
         NAME:<input
           type="text"
           name="name"
           placeholder="enter product name"
-          value="{{ products.name }}"
+          value="{{ product.name }}"
         />
       </label>
       <label>
@@ -16,7 +16,7 @@
           type="text"
           name="color"
           placeholder="enter product description"
-          value="{{ products.description }}"
+          value="{{ product.description }}"
         />
       </label>
       <label>
@@ -24,7 +24,7 @@
           type="text"
           name="color"
           placeholder="enter product IMG URL"
-          value="{{ products.img }}"
+          value="{{ product.img }}"
         />
       </label>
       <label>
@@ -32,7 +32,7 @@
           type="text"
           name="color"
           placeholder="enter product price"
-          value="{{ products.price }}"
+          value="{{ product.price }}"
         />
       </label>
       <label>
@@ -40,11 +40,11 @@
           type="text"
           name="color"
           placeholder="enter product quantity"
-          value="{{ products.qty }}"
+          value="{{ product.qty }}"
         />
       </label>
     </fieldset>
-    <input type="submit" value="Edit {{ products.name }}" />
+    <input type="submit" value="Edit {{ product.name }}" />
   </form>
 </div>
 {% endblock %}

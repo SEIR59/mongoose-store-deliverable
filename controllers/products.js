@@ -1,5 +1,7 @@
 const express = require("express");
 const Product = require("../models/product.js");
+const mongoose = require("mongoose");
+const db = mongoose.connection;
 
 /////////////////////////////////////////
 // Create Route
@@ -39,7 +41,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   // create the new fruit
   Product.create(req.body)
-    .then((products) => {
+    .then((product) => {
       // redirect user to index page if successfully created item
       res.redirect("/products");
     })
@@ -76,7 +78,7 @@ router.put("/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
   Product.findByIdAndUpdate(id, req.body, { new: true })
-    .then((products) => {
+    .then((product) => {
       // redirect to main page after updating
       res.redirect("/products");
     })
@@ -93,7 +95,7 @@ router.delete("/:id", (req, res) => {
   const id = req.params.id;
   // delete the fruit
   Product.findByIdAndRemove(id)
-    .then((products) => {
+    .then((product) => {
       // redirect to main page after deleting
       res.redirect("/products");
     })
@@ -110,9 +112,9 @@ router.get("/:id/edit", (req, res) => {
   const id = req.params.id;
   // get the fruit from the database
   Product.findById(id)
-    .then((products) => {
+    .then((product) => {
       // render edit page and send fruit data
-      res.render("products/edit.liquid", { products });
+      res.render("products/edit.liquid", { product });
     })
     // send error as json
     .catch((error) => {
