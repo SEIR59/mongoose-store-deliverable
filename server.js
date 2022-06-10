@@ -35,6 +35,10 @@ mongoose.connection
 /////////////////////////////////////////////////
 const app = require("liquid-express-views")(express(), {root: [path.resolve(__dirname, 'views/')]})
 
+const rowdy = require('rowdy-logger')
+const routesReport = rowdy.begin(app)
+
+
 /////////////////////////////////////////////////////
 // Middleware
 /////////////////////////////////////////////////////
@@ -43,18 +47,16 @@ app.use(methodOverride("_method")); // override for put and delete requests from
 app.use(express.urlencoded({ extended: true })); // parse urlencoded request bodies
 app.use(express.static("public")); // serve files from public statically
 
-////////////////////////////////////////////
-// Routes
-////////////////////////////////////////////
-app.get("/", (req, res) => {
-  res.send("your server is running... better catch it.");
-});
+
 
 //////////////////////////////////////////////
 // Server Listener
 //////////////////////////////////////////////
 const PORT = process.env.PORT;
-app.listen(PORT, () => console.log(`Now Listening on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`Now Listening on port ${PORT}`)
+  routesReport.print()
+});
 
 //////////////////////////////////////////////
 // Seed
@@ -70,6 +72,7 @@ app.get('/seed', async (req, res) => {
   }
 })
 
+// Route //
 
 //////////////////////////////////////////////
 // Index Route
@@ -136,7 +139,7 @@ app.put("/products/:id", (req, res) => {
   // get the id from params
   const id = req.params.id;
  
-  // update the product
+// update the product
   Product.findByIdAndUpdate(id, req.body,{ new:true })
     .then((product) => {
       // redirect to main page after updating
@@ -185,6 +188,27 @@ app.delete("/products/:id", (req, res) => {
     .then((product) => {
       // redirect to main page after deleting
       res.redirect("/products");
+    })
+    // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+
+//////////////////////////////////////////////
+// Buy Route
+//////////////////////////////////////////////
+app.put("/products/:id/buy", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  
+  Product.findByIdAndUpdate(id,{$inc:{qty:-1}},{new:true})
+    .then((product) => {
+      // redirect to main page after deleting
+      res.redirect("/products");
+      console.log()
     })
     // send error as json
     .catch((error) => {
