@@ -46,6 +46,20 @@ router.post("/", (req, res) => {
         })
 })
 
+//Edit route
+router.get("/:id", (req, res) => {
+    const id = req.params.id;
+    Product.findById(id)
+        .then((products) => {
+            res.render("edit.liquid", { products })
+        })
+        .catch((error) => {
+            console.log(error)
+            res.json({ error })
+        })
+})
+
+
 // New route
 router.get("/new", (req,res) => {
     res.render("new.liquid")
