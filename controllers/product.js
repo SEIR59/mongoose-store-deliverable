@@ -2,7 +2,7 @@
 // Import Dependencies
 ////////////////////////////////////////
 const express = require("express")
-const Product = require("../models/products.js")
+const Product = require("../models/products")
 
 
 /////////////////////////////////////////
@@ -48,7 +48,7 @@ router.post("/", (req, res) => {
 
 // New route
 router.get("/new", (req,res) => {
-    res.render("products/new.liquid")
+    res.render("new.liquid")
 })
 
 
