@@ -4,7 +4,7 @@
 <!-- here we start our block content -->
 {% block content %}
     <div >
-        <h2 class="display-6">All Products</h2>
+        <h2 class="display-6">Shop</h2>
         <div class="row">
             {% for product in products %}
                 <div class="card" style="width: 18rem;">
@@ -13,14 +13,10 @@
                     <h5 class="card-header">{{product.name}}</h5>
                     <div class="card-body">
                         <h5 class="card-title">
-                            {% if product.readyToEat %}
-                                Ripe
-                            {% else %}
-                                Not Ripe
-                            {% endif %}
                         </h5>
+                        <img src="{{ product.img }}"/>
                         <p class="card-text"> 
-                            The color of this {{product.name}} is {{ product.color }}
+                        Price: {{ product.price }}
                         </p>
                         <a href="/products/{{ product.id }}" class="btn btn-info">
                             View {{ product.name }}

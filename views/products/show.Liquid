@@ -5,23 +5,16 @@
         <!-- <article style="background-color:{{product.color}}"> -->
         <article>
             <h2>
-                {{ product.name }} - 
-                {% if product.readyToEat %}
-                    Ready to Eat
-                {% else %}
-                    Not Ready to Eat
-                {%endif%}
+                {{ product.name }}
             </h2>
-            <h3>{{ product.color }}</h3>
-            {% if username == product.username %}
+            <h3>{{ product.description }}</h3>
+            <h3>{{ product.price }}</h3>
                 <div class="btn-group">
-
-                    <a href="/products/{{ product.id }}/edit" class="btn btn-primary">Edit</a>
+                    <a href="/products/{{ forloop.id }}/edit" class="btn btn-primary">Edit</a>
                     <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
                         <input type="submit" value="delete that product" class="btn btn-danger">
                     </form>
                 </div>
-            {% endif %}
         </article>
     </div>
 {% endblock %}
