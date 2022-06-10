@@ -55,6 +55,22 @@ router.get("/new", (req, res) => {
   res.render("products/new.liquid");
 });
 
+// show route
+router.get("/:id", (req, res) => {
+  // get the id from params
+  const id = req.params.id;
+  // find the particular fruit from the database
+  Product.findById(id)
+    .then((products) => {
+      // render the template with the data from the database
+      res.render("products/show.liquid", { products });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
 //////////////////////////////////////////
 // Export the Router
 //////////////////////////////////////////
