@@ -91,26 +91,24 @@ router.get('/:id/edit', (req, res) => {
     })
 })
 
-// // buy route
-// router.put('/:id', (req, res) => {
-//   const id = req.params.id
-//   console.log('SUCCESSFULLY RAN BUY ROUTE START')
-//   Product.findByIdAndUpdate(id, { $dec: { qty: -1 }} )
-//     .then((product) => {
-//       // product.update(
-
-//       // )
-//       res.redirect('products/show', {
-//         product
-//       })
-//     })
-//     .catch((error) => {
-//       console.log(error)
-//       res.json({ error })
-//     })
-// })
-
-
+// buy route
+router.put('/:id/buy', (req, res) => {
+  const id = req.params.id
+  console.log('SUCCESSFULLY RAN BUY ROUTE START')
+  Product.findByIdAndUpdate(id, {
+    $inc: {
+      qty: -1
+    }
+  }, { new: true },
+  (error, product) => {
+    if(error) {
+      console.log(error)
+    }
+    else {
+      res.redirect(`/products/${id}`)
+    }
+  })
+})
 
 // update route
 router.put('/:id', (req, res) => {

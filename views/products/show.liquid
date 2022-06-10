@@ -7,18 +7,19 @@
     <p>Price: ${{ product.price }}</p>
 
     <img src="{{ product.img }}" alt="{{ product.name }}"><br>
+    {{ product.description }}<br>
 
     <a href="/products/{{ product._id }}/edit">
         <button>Edit Product</button>
     </a>
+
     <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
-            <button>Delete Product</button>
-        <br>
+        <button>Delete Product</button>
     </form>
     <p>Left in stock: {{ product.qty }}</p><br>
-    <form action="/products/{{ product._id }}?_method=PUT" method="POST">
+
+    <form action="/products/{{ product._id }}/buy?_method=PUT" method="POST">
         <button>Buy It!</button>
-        </a>
     </form>
 
 </div>
