@@ -22,14 +22,20 @@
                  <h4> Quantity: </h4>
                     {{product.qty}}
                 </label>
-            <a href="/products/{{product._id}}/edit"><button>Edit {{product.name}}</button></a>
-            <form action="/products/{{ product._id }}/buy?_method=PUT" method="POST">
-                <input type="submit" value="Buy" />
-            </form>
-            <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
-                <input type="submit" value="Delete" />
-            </form>
-            <a href="/products/"><button>Back to Main</button></a>
+
+                <a href="/products/{{product._id}}/edit"><button>Edit {{product.name}}</button></a>
+                
+                {% if product.qty == 0 %}
+                    <h4>OUT OF STOCK</h4>
+                    {%else%}
+                        <form action="/products/{{ product._id }}/buy?_method=PUT" method="POST">
+                            <input type="submit" value="Buy" />
+                         </form>
+                {%endif%}
+                         <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
+                            <input type="submit" value="Delete" />
+                         </form>
+                <a href="/products/"><button>Back to Main</button></a>
         </article>
     </div>
 {% endblock %}
