@@ -10,7 +10,7 @@ const { Schema , model } = mongoose
 
 // Make fruits schema
 const productsSchema = new Schema({
-    name: String,
+    name: {type: String, required: true},
     description: String,
     img: String,
     price: {type: Number, min: 1},

@@ -17,7 +17,7 @@ db.on("open", () => {
 
 })
 
-// app.get('/seed', async (req, res) => {
+// app.get('/store/seed', async (req, res) => {
     const newProducts =
       [
         {
@@ -31,7 +31,7 @@ db.on("open", () => {
           description: 'It\'s just a bag of bones.',
           img: 'https://imgur.com/dalOqwk.png',
           price: 25,
-          qty: 1
+          qty: 10
         }, {
           name: 'Bins',
           description: 'A stack of colorful bins for your beans and bones.',
@@ -41,14 +41,8 @@ db.on("open", () => {
         }
       ]
   
-    // try {
-    //   const seedItems = await Product.create(newProducts)
-    //   res.send(seedItems)
-    // } catch (err) {
-    //   res.send(err.message)
-    // }
-//   })
-
+  
+// })
      // Delete all products
      Product.deleteMany({})
      .then((deleted) => {

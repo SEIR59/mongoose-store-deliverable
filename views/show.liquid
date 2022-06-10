@@ -2,14 +2,27 @@
 <div>
   <article>
     <h2>
-      {{ productL.name }} - {% if readyToEat == true %} Ready to Eat {% else %} Not
-      Ready to Eat {% endif %}
-    </h2>
-    <h3>{{ productL.color }}</h3>
-    <a href="/store/{{ productL}}/edit"><button>Edit</button></a>
-    <form action="/store/{{ productL._id }}?_method=DELETE" method="POST">
+      {{ products.name }} </h2>
+
+    <img src="{{products.img}}" >
+    <br>
+    <h3>
+      {{products.price}}
+    </h3>
+    <h4>
+      {{products.qty}}
+    </h4>
+    <a href="/store/{{products._id}}/edit"><button>Edit</button></a>
+    <form action="/store/{{ products._id }}?_method=DELETE" method="POST">
       <input type="submit" value="Delete" />
     </form>
+    {% if products.qty == 0%}
+    <h5>OUT OF STOCK</h5>
+    {%else%} 
+    <form action="/store/{{ products._id }}/buy?_method=PUT" method="POST">
+      <input type="submit" value="Buy" />
+    </form>
+{%endif%}
     <a href="/store/"><button>Back to Main</button></a>
   </article>
 </div>
