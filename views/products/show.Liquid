@@ -16,4 +16,8 @@
     <a href="/products/"><button>Back to Main</button></a>
   </article>
 </div>
-{% endblock %}
+{% if product.qty == 0 %} Out of Stock! {% else %}
+<form action="/products/{{ product._id }}/buy?_method=PUT" method="POST">
+  <input type="submit" value="BUY" />
+</form>
+{%endif%} {% endblock %}

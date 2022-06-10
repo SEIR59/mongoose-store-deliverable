@@ -1,0 +1,17 @@
+body {
+    margin: 0;
+    text-align: center;
+}
+
+.item-div {
+    text-decoration: none;
+    border: 5px solid pink;
+    width: 75%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+img {
+    width: 25%;
+    height: 250px;
+}

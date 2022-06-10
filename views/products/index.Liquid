@@ -3,19 +3,18 @@
   <a href="/products/new"><button>Add Product</button></a>
   {% for product in products %}
   <article>
-    <div class="item-div">
-    <a href="/products/{{ product._id }}">
-      <h2>
-        {{ product.name }}
-      </h2>
-      <img src="{{ product.img }}" />
-    </a>
-    <br>
-    {{ product.qty }} in Stock!
-    <br>
-    Price: ${{ product.price }}
-</div>
+      <div class="item-div">
+        <h3>
+          {{ product.name }}
+        </h3>
+      <a href="/products/{{ product._id }}">
+        <img src="{{ product.img }}" />
+      </a>
+        <br />
+        {{ product.qty }} in Stock!
+        <br />
+        Price: ${{ product.price }}
+      </div>
   </article>
-  {% endfor %}
+  {% endfor %} {% endblock %}
 </div>
-{% endblock %}

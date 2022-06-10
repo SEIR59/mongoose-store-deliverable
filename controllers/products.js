@@ -4,33 +4,32 @@ const Product = require("../models/products");
 const router = express.Router();
 
 router.get("/seed", (req, res) => {
-  const newProducts = [
+  const newMoreProducts = [
     {
-      name: "Beans",
-      description:
-        "A small pile of beans. Buy more beans for a big pile of beans.",
-      img: "https://imgur.com/LEHS8h3.png",
-      price: 5,
-      qty: 99,
+      name: "Brown Sugar Boba",
+      description: "A cute brown sugar boba cup.",
+      img: "https://ih1.redbubble.net/image.1006767423.1372/flat,750x,075,f-pad,750x1000,f8f8f8.jpg",
+      price: 15,
+      qty: 100,
     },
     {
-      name: "Bones",
-      description: "It's just a bag of bones.",
-      img: "https://imgur.com/dalOqwk.png",
+      name: "Strawberry Milk Boba",
+      description: "A cute little pink strawberry milk tea.",
+      img: "https://ih1.redbubble.net/image.846498888.6828/raf,750x1000,075,t,FFFFFF:97ab1c12de.u2.jpg",
+      price: 17,
+      qty: 3,
+    },
+    {
+      name: "Cat Boba Cup",
+      description: "A cat boba cup.",
+      img: "https://media.dayoftheshirt.com/images/shirts/9nDCm/teepublic_cute-kawaii-bubble-tea-boba-milk-cat-lover-gift-idea-teepublic_1576507293.large.png",
       price: 25,
-      qty: 0,
-    },
-    {
-      name: "Bins",
-      description: "A stack of colorful bins for your beans and bones.",
-      img: "https://imgur.com/ptWDPO1.png",
-      price: 7000,
-      qty: 1,
+      qty: 6,
     },
   ];
 
   Product.deleteMany({}).then((data) => {
-    Product.create(newProducts).then((data) => {
+    Product.create(newMoreProducts).then((data) => {
       res.json(data);
     });
   });
@@ -108,6 +107,19 @@ router.delete("/:id", (req, res) => {
       res.redirect("/products");
     })
     // send error as json
+    .catch((error) => {
+      console.log(error);
+      res.json({ error });
+    });
+});
+
+//buy
+router.put("/:id/buy", (req, res) => {
+  const id = req.params.id;
+  Product.updateOne({ _id: id }, { $inc: { qty: -1 } })
+    .then((products) => {
+      res.redirect(`/products/${id}`);
+    })
     .catch((error) => {
       console.log(error);
       res.json({ error });
