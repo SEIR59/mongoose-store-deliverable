@@ -38,6 +38,13 @@ router.put('/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//update route / buy route
+router.put('/products/:id', (req,res) => {
+    Product.updateOne({_id: req.params.id}, {$inc: {qty: -1}})
+    .then(product => res.redirect(`/products/${req.params.id}`))
+    .catch(error => console.log(error))
+})
+
 // create route
 router.post('/', (req, res) => {
     const product = req.body

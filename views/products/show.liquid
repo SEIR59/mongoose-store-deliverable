@@ -3,6 +3,13 @@
     <a href="/products">Go Back to Soda Inventory</a>
     <article>
         <h1> {{ product.name }} </h1>
+        {% if product.qty > 0 %}
+        <form action="/products/{{product._id}}?_method=PUT" method="POST">
+            <input type="submit" value="Buy a {{product.name}}">
+        </form>
+        {% else %}
+        <h3>Sorry, the {{product.name}} is out of stock</h3>
+        {% endif %}
         <img src="{{product.img}}" alt="">
         <h3> Quantity: {{ product.qty }} </h3>
         <h3> Price: ${{ product.price }} </h3>
