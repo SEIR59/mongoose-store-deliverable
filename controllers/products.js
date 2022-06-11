@@ -42,6 +42,17 @@ router.get("/new", (req, res) => {
     res.render("products/new")
 })
 
+// Delete route
+router.delete("/:id", (req, res) => {
+    Product.findByIdAndRemove(req.params.id)
+        .then((product) => {
+            res.redirect("/products");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+})
+
 //Update route
 router.put("/:id", (req, res) => {
     Product.updateOne({_id: req.params.id}, 
