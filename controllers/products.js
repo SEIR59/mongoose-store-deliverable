@@ -30,11 +30,16 @@ router.get("/seed", (req, res) => {
             res.json(newProducts)
         })
 })
-
+// Index route
 router.get("/", (req, res) => {
     res.render('products/index', {
         products: Product.find({})
     })
+})
+
+// New route
+router.get("/new", (req, res) => {
+    res.render("products/new")
 })
 
 //Create route
@@ -48,5 +53,11 @@ router.post('/', (req, res) => {
     })
 })
 
+//Show route
+router.get("/:id", (req, res) => {
+    res.render("products/show", {
+        product: Product.find({name: req.params.id})
+    })
+})
 
 module.exports = router
