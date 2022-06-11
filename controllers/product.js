@@ -75,13 +75,6 @@ router.get('/new', (req, res) => {
 
 // create -> POST route that actually calls the db and makes a new document
 router.post('/', (req, res) => {
-	// check if the readyToEat property should be true or false
-	// we can check AND set this property in one line of code
-	// first part sets the property name
-	// second is a ternary to set the value
-	req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
-	// console.log('this is the product to create', req.body)
-	// now we're ready for mongoose to do its thing
 	// now that we have user specific products, we'll add the username to the product created
 	req.body.username = req.session.username
 	Product.create(req.body)
@@ -127,6 +120,19 @@ router.put('/:id', (req, res) => {
 		.then((product) => {
 			console.log('the updated product', product)
 
+			res.redirect(`/products/${product.id}`)
+		})
+		// if an error, display that
+		.catch((error) => res.json(error))
+})
+
+router.put('/:id/buy', (req, res) => {
+	// get the id
+	const productId = req.params.id
+	// tell mongoose to update the product
+	Product.updateOne({_id: productId}, {$inc:{qty: -1} })
+		// if successful -> redirect to the product page
+		.then((product) => {
 			res.redirect(`/products/${product.id}`)
 		})
 		// if an error, display that
