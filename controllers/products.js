@@ -42,6 +42,24 @@ router.get("/new", (req, res) => {
     res.render("products/new")
 })
 
+//Update route
+router.put("/:id", (req, res) => {
+    Product.updateOne({_id: req.params.id}, 
+        {$set: {
+            qty: req.body.qty, 
+            name: req.body.name, 
+            img: req.body.img,
+            description: req.body.description,
+            price: req.body.price
+        }})
+        .then((product) => {
+            res.redirect("/products");
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+})
+
 //Create route
 router.post('/', (req, res) => {
     Product.create(req.body)
