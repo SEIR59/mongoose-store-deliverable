@@ -7,17 +7,17 @@
                 NAME:<input type="text" name="name" placeholder="enter product name" value="{{ searchResult.name }}" />
             </label>
             <label>
-                IMAGE: <input type="text" name="imageURL" placeholder="enter image URL" value="{{searchResult.img}}">
+                IMAGE: <input type="text" name="img" placeholder="enter image URL" value="{{searchResult.img}}"/>
             </label>
             <label>
                 DESCRIPTION:<input type="text" name="description" placeholder="enter product description"
                     value="{{ searchResult.description }}" />
             </label>
             <label>
-                PRICE:<input type="number" name="price" placeholder="enter price" />
+                PRICE:<input type="number" name="price" placeholder="enter price" value="{{searchResult.price}}"/>
             </label>
             <label>
-                IN STOCK: <input type="number" name="inStock" placeholder="quantity in stock" />
+                IN STOCK: <input type="number" name="qty" placeholder="quantity in stock" value="{{searchResult.qty}}" />
             </label>
         </fieldset>
         <input type="submit" value="Submit {{ searchResult.name }}" />

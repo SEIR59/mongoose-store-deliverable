@@ -3,7 +3,7 @@
     <a href="/products/new" id="indexPageCreate"><button>Create A New Product</button></a>
     {% for product in searchResult %}
     <article class="indexProduct">
-        <img src="{{product.img}}" alt="">
+        <img src="{{product.img}}" alt="{{product.name}}">
       <a href="/products/{{ product._id }}">
         <h2>
           {{product.name}}
