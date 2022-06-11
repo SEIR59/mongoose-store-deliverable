@@ -78,21 +78,21 @@ router.put("/:id", (req, res) => {
       });
   });
   
-//   router.delete("/:id", (req, res) => {
-//     // get the id from params
-//     const id = req.params.id;
-//     // delete the fruit
-//     Fruit.findByIdAndRemove(id)
-//       .then((fruit) => {
-//         // redirect to main page after deleting
-//         res.redirect("/fruits");
-//       })
-//       // send error as json
-//       .catch((error) => {
-//         console.log(error);
-//         res.json({ error });
-//       });
-//   });
+  router.delete("/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // delete the product
+    Product.findByIdAndRemove(id)
+      .then((searchResult) => {
+        // redirect to main page after deleting
+        res.redirect("/products");
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
   
 // edit route
 router.get("/:id/edit", (req, res) => {

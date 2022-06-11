@@ -1,8 +1,9 @@
 {% layout "layout.liquid" %} {% block content %}
-<div>
-    <a href="/products/new"><button>Create A New Product</button></a>
+<div class="indexDiv">
+    <a href="/products/new" id="indexPageCreate"><button>Create A New Product</button></a>
     {% for product in searchResult %}
-    <article>
+    <article class="indexProduct">
+        <img src="{{product.img}}" alt="">
       <a href="/products/{{ product._id }}">
         <h2>
           {{product.name}}

@@ -1,0 +1,32 @@
+h1 {
+    text-align: center;
+    margin: 50px;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    box-sizing: content-box;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.indexDiv {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#indexPageCreate {
+    align-self: center;
+}
+
+.indexProduct {
+    border: 5px solid black;
+    border-radius: 10px;
+}
