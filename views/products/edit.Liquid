@@ -9,7 +9,7 @@
 <body>
     <h1>Update a Product</h1>
         <a href="/products/"><button type="button">Back</button></a>
-    <form action="/products/{{product._id}}?_method=PUT" method="POST">
+        <form action="/products/{{product._id}}?_method=PUT" method="POST">
         <label>
             Name:<input type="text" name="name" value="{{product.name}}"/>
         </label><br>

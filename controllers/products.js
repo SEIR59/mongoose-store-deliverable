@@ -105,4 +105,16 @@ router.get("/:id", (req, res) => {
         })
 })
 
+// Buy route
+router.put("/:id/buy", (req, res) => {
+    Product.updateOne({ _id: req.params.id },
+        { $inc: { qty: -1 } })
+        .then((product) => {
+            res.redirect("/products");
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+})
+
 module.exports = router
