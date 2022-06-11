@@ -132,9 +132,8 @@ router.put('/:id/buy', (req, res) => {
 	// tell mongoose to update the product
 	Product.updateOne({_id: productId}, {$inc:{qty: -1} })
 		// if successful -> redirect to the product page
-		.then((product) => {
-			res.redirect(`/products/${product.id}`)
-		})
+		.then(
+			res.redirect(`/products/${productId}`))
 		// if an error, display that
 		.catch((error) => res.json(error))
 })
