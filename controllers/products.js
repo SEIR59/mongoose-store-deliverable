@@ -62,23 +62,21 @@ router.get("/:id", (req, res) => {
 });
 
 // //update route
-// router.put("/:id", (req, res) => {
-//     // get the id from params
-//     const id = req.params.id;
-//     // check if the readyToEat property should be true or false
-//     req.body.readyToEat = req.body.readyToEat === "on" ? true : false;
-//     // update the fruit, new:true actually returns the updated item
-//     Fruit.findByIdAndUpdate(id, req.body, { new: true })
-//       .then((fruit) => {
-//         // redirect to main page after updating
-//         res.redirect("/fruits");
-//       })
-//       // send error as json
-//       .catch((error) => {
-//         console.log(error);
-//         res.json({ error });
-//       });
-//   });
+router.put("/:id", (req, res) => {
+    // get the id from params
+    const id = req.params.id;
+    // update the product, new:true actually returns the updated item
+    Product.findByIdAndUpdate(id, req.body, { new: true })
+      .then((searchResult) => {
+        // redirect to main page after updating
+        res.redirect("/products");
+      })
+      // send error as json
+      .catch((error) => {
+        console.log(error);
+        res.json({ error });
+      });
+  });
   
 //   router.delete("/:id", (req, res) => {
 //     // get the id from params
