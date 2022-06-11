@@ -37,4 +37,16 @@ router.get("/", (req, res) => {
     })
 })
 
+//Create route
+router.post('/', (req, res) => {
+    Product.create(req.body)
+    .then((data) => {
+        res.redirect('/products')
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+
 module.exports = router
