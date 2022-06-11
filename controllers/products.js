@@ -53,11 +53,27 @@ router.post('/', (req, res) => {
     })
 })
 
+//Edit Route
+router.get("/:id/edit", (req, res) => {
+    Product.find({name: req.params.id})
+    .then((product) => {
+        res.render("products/edit", {
+            product: product
+        })
+    })
+})
+
 //Show route
 router.get("/:id", (req, res) => {
-    res.render("products/show", {
-        product: Product.find({name: req.params.id})
-    })
+    Product.findById(req.params.id)
+        .then((product) => {
+            res.render("products/show", {
+                product: product
+            })
+        })
+        .catch((error) => {
+            console.log(error);
+        })
 })
 
 module.exports = router

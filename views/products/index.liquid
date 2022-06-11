@@ -11,7 +11,7 @@
     <a href="/products/new"><button type="button">Add a product</button>
     {% for product in products %}
     <h3>Name: {{product.name}}</h3>
-    <a href="/products/{{product.name}}"><img src="{{product.img}}">
+    <a href="/products/{{product.id}}"><img src="{{product.img}}">
     <h3>Price: {{product.price}}</h3>
     <h3>Quantity: {{product.qty}}</h3>
     {% endfor %}
