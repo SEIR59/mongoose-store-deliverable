@@ -30,3 +30,12 @@ label {
     border: 5px solid black;
     border-radius: 10px;
 }
+
+#showpageImage {
+    display: block;
+    margin: 0 auto;
+}
+
+#showpageH3 {
+    text-align: center;
+}
