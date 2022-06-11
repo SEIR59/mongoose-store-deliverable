@@ -91,12 +91,10 @@ router.post('/', (req, res) => {
 // edit route -> GET that takes us to the edit form view
 router.get('/:id/edit', (req, res) => {
 	// we need to get the id
-	const productId = req.params.id
 	// find the product
-	Product.findById(productId)
+	Product.findById(req.params.id)
 		// -->render if there is a product
 		.then((product) => {
-			console.log('edit product', product)
 			const username = req.session.username
 			const loggedIn = req.session.loggedIn
 			res.render('products/edit', { product, username, loggedIn })
