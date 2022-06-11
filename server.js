@@ -4,7 +4,7 @@ const methodOverride = require('method-override')
 //Morgan for debugging
 const morgan = require('morgan')
 const path = require('path')
-// const ProductRouter = require('./controllers/products')
+const ProductRouter = require('./controllers/products')
 
 
 /////////////////////////////////////////////////
@@ -24,7 +24,7 @@ app.use(express.static("public")); // serve files from public statically
 ////////////////////////////////////////////
 // Routes
 ////////////////////////////////////////////
-app.use('/product', ProductRouter)
+app.use('/products', ProductRouter)
 
 app.get('/', (req, res) => {
     res.send("Store Homepage")

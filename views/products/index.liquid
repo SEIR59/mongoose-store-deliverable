@@ -1,0 +1,15 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+    <a href="/products/new"><button>Create A New Product</button></a>
+    {% for product in searchResult %}
+    <article>
+      <a href="/products/{{ product._id }}">
+        <h2>
+          {{product.name}}
+        </h2>
+      </a>
+    </article>
+    {% endfor %}
+  </div>
+  {% endblock %}
+  

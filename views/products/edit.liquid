@@ -1,0 +1,23 @@
+<!-- {% layout "layout.liquid" %} {% block content %}
+<div>
+    <form action="/products/{{ searchResult._id }}?_method=PUT" method="post">
+        <fieldset>
+            <legend>Edit {{ searchResult.name }}</legend>
+            <label>
+                NAME:<input type="text" name="name" placeholder="enter product name" value="{{ searchResult.name }}" />
+            </label>
+            <label>
+                DESCRIPTION:<input type="text" name="description" placeholder="enter product description"
+                    value="{{ searchResult.description }}" />
+            </label>
+            <label>
+                PRICE:<input type="number" name="price" placeholder="enter price" />
+                <label>
+                    IN STOCK: <input type="number" name="inStock" placeholder="quantity in stock">
+                </label>
+            </label>
+        </fieldset>
+        <input type="submit" value="Edit {{ searchResult.name }}" />
+    </form>
+</div>
+{% endblock %} -->

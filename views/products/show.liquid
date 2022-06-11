@@ -1,0 +1,15 @@
+{% layout "layout.liquid" %} {% block content %}
+<div>
+    <article>
+        <h2>
+            {{ searchResult.name }}
+        </h2>
+        <h3>{{ searchResult.description }}</h3>
+        <a href="/products/{{ searchResult._id }}/edit"><button>Edit Product</button></a>
+        <form action="/products/{{ searchResult._id }}?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" />
+        </form>
+        <a href="/products/"><button>Back to Main</button></a>
+    </article>
+</div>
+{% endblock %}

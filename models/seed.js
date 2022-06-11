@@ -1,6 +1,5 @@
-const { Db } = require('mongodb')
-const mongoose = require('/connection')
-const Product = require('/product')
+const mongoose = require('./connection')
+const Product = require('./product')
 const db = mongoose.connection
 db.on ('open', () => {
     const newProducts =
@@ -16,7 +15,7 @@ db.on ('open', () => {
         description: 'It\'s just a bag of bones.',
         img: 'https://imgur.com/dalOqwk.png',
         price: 25,
-        qty: 0
+        qty: 1
       }, {
         name: 'Bins',
         description: 'A stack of colorful bins for your beans and bones.',

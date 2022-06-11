@@ -7,5 +7,26 @@
     "method-override": "^3.0.0",
     "mongoose": "^6.3.6",
     "morgan": "^1.10.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node models/seed.js",
+    "dev": "nodemon server.js"
+  },
+  "name": "mongoose-store-deliverable",
+  "description": "![General Assembly Logo](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png)",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NSTaft/mongoose-store-deliverable.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NSTaft/mongoose-store-deliverable/issues"
+  },
+  "homepage": "https://github.com/NSTaft/mongoose-store-deliverable#readme"
 }

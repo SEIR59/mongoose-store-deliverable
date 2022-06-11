@@ -1,4 +1,4 @@
-const mongoose = require('/connection')
+const mongoose = require('./connection')
 
 const { Schema, model } = mongoose
 
@@ -11,7 +11,7 @@ const productsSchema = new Schema({
     qty: {type: Number, min: 1}
 })
 
-// Make Fruit model // the " " argument becomes a collection
+// Make Product model // the " " argument becomes a collection
 const Product = model("Product", productsSchema)
 
 ///////////////////////////////////////////////////
