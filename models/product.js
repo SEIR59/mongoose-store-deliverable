@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("./connection");
 // pull schema and model from mongoose
 const { Schema, model } = mongoose;
 
