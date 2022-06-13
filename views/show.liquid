@@ -1,0 +1,36 @@
+{% layout "layout.liquid" %} {% block content %}
+      <div>
+        <article>
+
+
+          <img src="{{ product.img }}" alt="{{ product.name }}">
+          <h2> {{ product.name }} </h2>
+          <h4> 
+            Description:   {{ product.description }} <br>
+            Price:   {{ product.price }}<br>
+            Quantity:   {{ product.qty }}<br>
+          </h4>
+            
+          
+          
+          
+          <a href="/products/{{ product._id }}/edit"><button>Edit</button></a> 
+
+          
+        <form action="/products/{{ product._id }}?_method=DELETE" method="POST">
+          
+          <input type="submit" value="Delete" />
+          
+        </form>
+        <form action="/products/{{ product._id }}/buy?_method=PUT" method="POST">
+
+          
+          <input type="submit" value="Buy" />
+
+        </form>
+          
+          <a href="/products/"><button>Back to Main</button></a>
+        </article>
+      </div>
+{% endblock %}
+
