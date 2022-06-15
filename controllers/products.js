@@ -84,7 +84,7 @@ router.post('/', (req, res) => {
 
 //Edit Route
 router.get("/:id/edit", (req, res) => {
-    Product.find({name: req.params.id})
+    Product.findById(req.params.id)
     .then((product) => {
         res.render("products/edit", {
             product: product
