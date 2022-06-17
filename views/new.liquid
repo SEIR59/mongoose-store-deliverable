@@ -3,12 +3,28 @@
   <form action="/store" method="POST">
     <fieldset>
       <legend>Add product</legend>
-      <label>
-        NAME:<input type="text" name="name" placeholder="enter product name" />
-      </label>
-      <label>
-        COLOR:<input type="text" name="color" placeholder="enter product name" />
-    </fieldset>
+      NAME:<input
+      type="text"
+      name="name"
+      placeholder="enter  name"
+      value="{{products.name}}"
+    />
+  </label>
+  <label >
+  Price:<input
+      type="text"
+      name="price"
+      placeholder="enter "
+      value="{{products.price}}"
+/>
+<label >
+  Quanity:<input
+      type="text"
+      name="qty"
+      placeholder="enter "
+      value="{{products.qty}}"
+/>
+</fieldset>
     <input type="submit" value="add new product" />
   </form>
 </div>

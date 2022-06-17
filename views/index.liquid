@@ -1,5 +1,6 @@
 {% layout "layout.liquid" %} {% block content %}
 <div>
+  <a href="/store/new"><button> Add another product</button></a>
   {% for productL in products %}
   <article>
     <a href="/store/{{ productL._id }}">
