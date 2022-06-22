@@ -11,6 +11,7 @@ app.use(express.static('public'))
 
 app.use('/products', ProductRouter)
 
+
 app.get('/', (req, res) => {
 	res.render('index.liquid')
 })
