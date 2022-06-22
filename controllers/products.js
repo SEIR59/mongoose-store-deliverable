@@ -58,7 +58,19 @@ router.get('/new', (req, res) => {
 
 // Edit Page
 router.get('/:id/edit', (req, res) => {
-
+	// get the id from params
+	const id = req.params.id
+	// get the product from the database
+	Product.findById(id)
+		.then((product) => {
+			// render edit page and send product data
+			res.render('edit.liquid', { product })
+		})
+		// send error as json
+		.catch((error) => {
+			console.log(error)
+			res.json({ error })
+		})
 })
 
 // Show Page
@@ -83,7 +95,19 @@ router.put('/:id/buy', (req, res) => {
 
 // Update Route
 router.put('/:id', (req, res) => {
-
+	// get the id from params
+	const id = req.params.id
+	// update the product
+	Product.findByIdAndUpdate(id, req.body, { new: true })
+		.then((product) => {
+			// redirect to main page after updating
+			res.redirect('/products')
+		})
+		// send error as json
+		.catch((error) => {
+			console.log(error)
+			res.json({ error })
+		})
 })
 
 // Delete Page
