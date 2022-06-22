@@ -1,0 +1,10 @@
+body {
+    background-color: honeydew;
+    color: pink;
+}
+
+ button {
+     background-color: rgb(84, 163, 227);
+     color: white;
+     border-color: white;
+ }
