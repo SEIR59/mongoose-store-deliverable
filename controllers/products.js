@@ -111,8 +111,20 @@ router.put('/:id', (req, res) => {
 })
 
 // Delete Page
-router.get('/:id', (req, res) => {
-
+router.delete('/:id', (req, res) => {
+	// get the id from params
+	const id = req.params.id
+	// delete the product
+	Product.findByIdAndRemove(id)
+		.then((product) => {
+			// redirect to main page after deleting
+			res.redirect('/products')
+		})
+		// send error as json
+		.catch((error) => {
+			console.log(error)
+			res.json({ error })
+		})
 })
 
 module.exports = router
