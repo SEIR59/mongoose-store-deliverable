@@ -13,7 +13,15 @@ router.get('/', async (req, res) => {
 
 // Create Page
 router.post('/', (req, res) => {
-
+	Product.create(req.body)
+		.then((products) => {
+			res.redirect('/products')
+		})
+		// send error as json
+		.catch((error) => {
+			console.log(error)
+			res.json({ error })
+		})
 })
 
 // Seed
@@ -53,7 +61,7 @@ router.get('/seed', async (req, res) => {
 
 // New Page
 router.get('/new', (req, res) => {
-
+	res.render('new.liquid')
 })
 
 // Edit Page
