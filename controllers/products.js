@@ -63,7 +63,18 @@ router.get('/:id/edit', (req, res) => {
 
 // Show Page
 router.get('/:id', (req, res) => {
+	const id = req.params.id
 
+	// find the particular product from the database
+	Product.findById(id)
+		.then((product) => {
+			// render the template with the data from the database
+			res.render('show.liquid', { product })
+		})
+		.catch((error) => {
+			console.log(error)
+			res.json({ error })
+		})
 })
 
 router.put('/:id/buy', (req, res) => {
